@@ -40,8 +40,6 @@ if(count($fila)!=0){
             if(!isset($_COOKIE["id"])){
                 #crear cookie id_usuario con valor del id de usuario proporcionado, duracion un mes
                 setcookie("id",$fila[0]["Id"], time()+(60*60*24*30));
-                setcookie("id",$fila[0]["Nombres"], time()+(60*60*24*30));
-                setcookie("id",$fila[0]["Apellidos"], time()+(60*60*24*30));
             }
         }
         #regresar a index

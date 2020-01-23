@@ -1,11 +1,45 @@
 <?php 
 session_start();
-#te regresa a index si es que ya iniciaste sesion con tu usuario
-if(isset($_SESSION["id"])){
-    header("Location: index.php");
-    exit();
-}
+    
+
+    #entra si no existe la variable id guardada en la sesion
+    if(!isset($_SESSION["id"])){
+        
+        #entra si existe una cookie guardada con la id del usuario
+        if(isset($_COOKIE["id"])){
+            $id=$_COOKIE["id"];
+            
+            #crear pdo
+            $pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
+        
+            #construir comando
+            $sql="SELECT * 
+            FROM usuarios 
+            WHERE Id = '$id'";
+        
+            #ejecutar comando
+            $resultado=$pdo->query($sql);
+            $fila=$resultado->fetch();
+        
+            #se guardan las variables usuario, nombres, apellidos y email
+            $_SESSION["id"]=$fila["Id"];
+            $_SESSION["nombres"]=$fila["Nombres"];
+            $_SESSION["apellidos"]=$fila["Apellidos"];
+            $_SESSION["correo"]=$fila["Correo"];
+            $_SESSION["contraseña"]=$fila["Contraseña"];
+        }
+    } 
+
+    if(isset($_SESSION["id"])){
+        header("Location: index.php");
+        exit();
+} 
+ 
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
