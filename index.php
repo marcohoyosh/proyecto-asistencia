@@ -22,11 +22,11 @@
                     </select>
                 </td>
                 <td>
-                    <input type="date" name="cumpleanios" step="1" min="2013-01-01" max="2020-12-31" value="">
+                    <input type="date" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" step="7" value="">
 
                 </td>
                 <td>
-                    <input type="date" name="cumpleanios" step="1" min="2013-01-01" max="2020-12-31" value="">
+                    <input type="date" name="fecha" step="1" min="2013-01-01" max="2020-12-31" value="fecha1">
 
                 </td>
                 
