@@ -29,8 +29,7 @@ if(count($fila)!=0){
         #se inicia la sesion y se guardan las variables id, usuario, nombres, apellidos y email
         session_start();
         $_SESSION["id"]=$fila[0]["Id"];
-        
-        $_SESSION["nombres"]=$fila[0]["Nombre"];
+        $_SESSION["nombres"]=$fila[0]["Nombres"];
         $_SESSION["apellidos"]=$fila[0]["Apellidos"];
         $_SESSION["correo"]=$fila[0]["Correo"];
         $_SESSION["contraseña"]=$fila[0]["Contraseña"];
@@ -38,9 +37,11 @@ if(count($fila)!=0){
         #entra si desea crear la cookie
         if(isset($_POST["s"])){
             #verificar que no exista la cookie
-            if(!isset($_COOKIE["id_usuario"])){
+            if(!isset($_COOKIE["id"])){
                 #crear cookie id_usuario con valor del id de usuario proporcionado, duracion un mes
-                setcookie("id_usuario",$fila[0]["Id"], time()+(60*60*24*30));
+                setcookie("id",$fila[0]["Id"], time()+(60*60*24*30));
+                setcookie("id",$fila[0]["Nombres"], time()+(60*60*24*30));
+                setcookie("id",$fila[0]["Apellidos"], time()+(60*60*24*30));
             }
         }
         #regresar a index

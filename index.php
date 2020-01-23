@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +11,18 @@
 <body>
     <header class="site-header inicio">    
         <div class='contenedor contenido-header' id="myHeader">
-            <div class="barra">
-                <a href=" index.php"><img src="../imagenes/CORP.M.png" alt="Logo" width="150px" class="logo"></a>
+            <div class="barra">   
+                <a href=" index.php"><img src="imagenes/cmlogo.png" alt="Logo" height="85px" class="logo"></a>
+                <h3>Bienvenido <?php echo $_SESSION["nombres"] ?> <a href="cerrar_cesion.php">Cerrar Sesion</a></h3>
                 <nav class="navegacion">                                   
-                    <?php if(isset($_SESSION["id"])){ ?>
-                    <a href="../paginas/usuario.php" class="a"><?php echo $_SESSION["usuario"] ?></a>
-                    <a href="../Funciones/cerrar_session.php" class="a">Cerrar Sesión</a>
-                    <?php }else{ ?>
-                    <a href="../paginas/login.php" class="a">Iniciar Sesion</a>                    
+                                   
                 </nav>   
             </div>         
         </div>       
     </header>
-    <div>
-    <form action="../Funciones/procesar_adopcion.php" method="post">
-    <div class="logo">
-        <img src="imagenes/cmlogo.png" class="logo" alt="" srcset="">
-    </div>
-
+       <div>
+    <form action="rangotienda.php" method="post">
+    
     <input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
         <table class="jorge" caption="juan">
             
@@ -54,29 +49,29 @@
             </tr>
         </table>
         
-        <div id="main-container">
+                <div id="main-container">
 
-		<table class="2">
-			<thead>
-				<tr>
-                <th>Nombre</th><th>Tardanzas</th><th>Antes</th><th>Incompletas</th><th>Otros motivos</th><th>Total</th><th>Ausencias no pagadas</th>
-				</tr>
-			</thead>
+                    <table class="2">
+                        <thead>
+                            <tr>
+                            <th>Nombre</th><th>Tardanzas</th><th>Antes</th><th>Incompletas</th><th>Otros motivos</th><th>Total</th><th>Ausencias no pagadas</th>
+                            </tr>
+                        </thead>
 
-			<tr>
-				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-			</tr>
-			<tr>
-				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-			</tr>
-			<tr>
-				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-			</tr>
-			<tr>
-				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-			</tr>
-		</table>
-	</div>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                        </tr>
+                    </table>
+                </div>
     </form>
     </div>
 </body>

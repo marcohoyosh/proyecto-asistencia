@@ -30,7 +30,7 @@ thead{
 }
 
 tr:nth-child(even){
-	background-color: blue;
+	background-color:#9bd1db;
 }
 
 .boton{
@@ -39,6 +39,6 @@ tr:nth-child(even){
     font-weight: bold;
 }
 .juan{
-	background-color: blue;
+	background-color: red;
 	padding: 50px;
 }

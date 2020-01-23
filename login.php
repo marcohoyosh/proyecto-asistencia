@@ -2,7 +2,7 @@
 session_start();
 #te regresa a index si es que ya iniciaste sesion con tu usuario
 if(isset($_SESSION["id"])){
-    header("Location: ../index.php");
+    header("Location: index.php");
     exit();
 }
 ?>
