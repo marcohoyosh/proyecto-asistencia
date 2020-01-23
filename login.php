@@ -26,13 +26,14 @@ if(isset($_SESSION["id"])){
         <form action="procesar-login.php" method="post">
         
             <div class="Formulario">
-                <h2>Ingresar con tu cuenta</h2>
+                <h2 style="color:rgb(156, 28, 11);padding=0">Ingresa con tu cuenta</h2>
                     <div class="elemento">
-                    Nombre de usuario:<br>
+                    
+                    <p style="color:red">Nombre de usuario:</p>
                     <input type="text" name="u" id="" placeholder="nombre de usuario" autofocus required>
                     </div>
                     <div class="elemento">
-                    Contraseña:<br>
+                    <p style="color:red">Contraseña:</p>
                     <input type="password" name="p" id="" placeholder="contraseña" required>
                     </div>
                     <div class="elemento iniciada">
