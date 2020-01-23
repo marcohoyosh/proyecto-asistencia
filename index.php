@@ -8,6 +8,20 @@
     <title>supervision</title>
 </head>
 <body>
+    <header class="site-header inicio">    
+        <div class='contenedor contenido-header' id="myHeader">
+            <div class="barra">
+                <a href=" index.php"><img src="../imagenes/CORP.M.png" alt="Logo" width="150px" class="logo"></a>
+                <nav class="navegacion">                                   
+                    <?php if(isset($_SESSION["id"])){ ?>
+                    <a href="../paginas/usuario.php" class="a"><?php echo $_SESSION["usuario"] ?></a>
+                    <a href="../Funciones/cerrar_session.php" class="a">Cerrar Sesión</a>
+                    <?php }else{ ?>
+                    <a href="../paginas/login.php" class="a">Iniciar Sesion</a>                    
+                </nav>   
+            </div>         
+        </div>       
+    </header>
     <div>
     <form action="../Funciones/procesar_adopcion.php" method="post">
     <input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
