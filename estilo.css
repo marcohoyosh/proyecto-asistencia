@@ -1,0 +1,32 @@
+#main-container{
+	margin: 150px auto;
+	width: 90%;
+}
+
+table {
+	background-color: white;
+	text-align: left;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td{
+    border: solid 1px black;
+    padding: 20px;
+    text-align: center;
+}
+
+thead{
+	background-color: #a5d4dd;
+	color: black;
+}
+
+tr:nth-child(even){
+	background-color: #dbdbdb;
+}
+
+.boton{
+    background-color:#a5d4dd;
+    padding: 10px;
+    font-weight: bold;
+}
