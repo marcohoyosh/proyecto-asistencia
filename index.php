@@ -24,8 +24,13 @@
     </header>
     <div>
     <form action="../Funciones/procesar_adopcion.php" method="post">
+    <div>
+        <img src="" alt="" srcset="">
+    </div>
+
     <input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
-        <table>
+        <table class="jorge" caption="juan">
+            
             <tr>
                 <td>
                     <select>
@@ -43,13 +48,12 @@
                     <input type="date" name="fecha" step="1" min="2013-01-01" max="2020-12-31" value="fecha1">
 
                 </td>
-                
+                <td>
+                    <button type="submit" class="boton">Consultar</button>
+                </td>
             </tr>
-            
         </table>
-        <div class="botones">
-            <button type="submit" class="boton">Consultar</button>
-        </div>
+        
         <div id="main-container">
 
 		<table class="2">

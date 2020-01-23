@@ -1,3 +1,7 @@
+body{
+	background-color:#595866;
+}
+
 #main-container{
 	margin: 150px auto;
 	width: 90%;
@@ -22,11 +26,15 @@ thead{
 }
 
 tr:nth-child(even){
-	background-color: #dbdbdb;
+	background-color: #c;
 }
 
 .boton{
     background-color:#a5d4dd;
     padding: 10px;
     font-weight: bold;
+}
+.juan{
+	background-color: blue;
+	padding: 50px;
 }

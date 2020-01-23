@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD']!='POST' || isset($_POST["b"])){
 }
 
 #crear pdo
-$pdo=new PDO("mysql:host=localhost;dbname=proyectot;charset=utf8","root","");
+$pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
 
 #leer datos de post
 $usuario=$_POST["u"];
