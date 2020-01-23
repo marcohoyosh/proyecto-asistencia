@@ -2,6 +2,10 @@ body{
 	background-color:#595866;
 }
 
+.logo{
+	height: 100px;
+}
+
 #main-container{
 	margin: 150px auto;
 	width: 90%;

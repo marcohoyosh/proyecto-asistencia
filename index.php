@@ -10,8 +10,8 @@
 <body>
     <div>
     <form action="../Funciones/procesar_adopcion.php" method="post">
-    <div>
-        <img src="" alt="" srcset="">
+    <div class="logo">
+        <img src="imagenes/cmlogo.png" class="logo" alt="" srcset="">
     </div>
 
     <input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
