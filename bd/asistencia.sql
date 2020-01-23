@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-01-2020 a las 15:41:48
+-- Tiempo de generación: 23-01-2020 a las 17:28:03
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.26
 
@@ -62,6 +62,28 @@ CREATE TABLE `empleados` (
   `iddepartamento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `Id` int(11) NOT NULL,
+  `Nombres` varchar(30) NOT NULL,
+  `Apellidos` varchar(30) NOT NULL,
+  `Correo` varchar(50) NOT NULL,
+  `Contraseña` varchar(30) NOT NULL,
+  `Rol` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`Id`, `Nombres`, `Apellidos`, `Correo`, `Contraseña`, `Rol`) VALUES
+(1, 'Marco', 'Hoyos', 'maro.hoyos@gmail.com', '123456', 0);
+
 --
 -- Índices para tablas volcadas
 --
@@ -84,6 +106,12 @@ ALTER TABLE `departamaneto`
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`idempleado`),
   ADD KEY `iddepartamento` (`iddepartamento`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Restricciones para tablas volcadas
