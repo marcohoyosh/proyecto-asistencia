@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="estilo.css">
     <title>supervision</title>
 </head>
 <body>
@@ -32,10 +33,32 @@
             </tr>
             
         </table>
-        <div class="botones_adopcion">
-            <button type="submit">Adoptar seleccionados</button>
-            <button type="submit" name="b">Regresar a inicio</button>
+        <div class="botones">
+            <button type="submit" class="boton">Consultar</button>
         </div>
+        <div id="main-container">
+
+		<table class="2">
+			<thead>
+				<tr>
+                <th>Nombre</th><th>Tardanzas</th><th>Antes</th><th>Incompletas</th><th>Otros motivos</th><th>Total</th><th>Ausencias no pagadas</th>
+				</tr>
+			</thead>
+
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+			</tr>
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+			</tr>
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+			</tr>
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+			</tr>
+		</table>
+	</div>
     </form>
     </div>
 </body>
