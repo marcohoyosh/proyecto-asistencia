@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2020 a las 15:36:31
+-- Tiempo de generación: 24-01-2020 a las 20:10:09
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.26
 
@@ -46,6 +46,7 @@ CREATE TABLE `checkin` (
 --
 
 INSERT INTO `checkin` (`idempleado`, `fecha`, `horarioentrada`, `inciob`, `salidab`, `horariosalida`, `checkinicio`, `chekinciob`, `checksalidab`, `checksalida`) VALUES
+(25, '0000-00-00', '12:11:00', '16:11:00', '17:11:00', '22:11:00', '11:46:00', '00:00:00', '00:00:00', '22:15:00'),
 (25, '2020-01-07', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:46:00', '00:00:00', '00:00:00', '22:15:00'),
 (25, '2020-01-08', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '12:12:00', '00:00:00', '00:00:00', '22:21:00'),
 (25, '2020-01-09', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:49:00', '00:00:00', '00:00:00', '22:47:00'),
@@ -99,6 +100,40 @@ INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `iddepartamento`) V
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nuevo`
+--
+
+CREATE TABLE `nuevo` (
+  `id` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  `horingreso` time NOT NULL,
+  `horibi` time DEFAULT NULL,
+  `horibs` time DEFAULT NULL,
+  `horisalida` time NOT NULL,
+  `maringreso` time DEFAULT NULL,
+  `maribi` time DEFAULT NULL,
+  `maribs` time DEFAULT NULL,
+  `marsalida` time DEFAULT NULL,
+  `tardanza` time DEFAULT NULL,
+  `temprano` time DEFAULT NULL,
+  `worktime` time DEFAULT NULL,
+  `tiempototal` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `nuevo`
+--
+
+INSERT INTO `nuevo` (`id`, `fecha`, `horingreso`, `horibi`, `horibs`, `horisalida`, `maringreso`, `maribi`, `maribs`, `marsalida`, `tardanza`, `temprano`, `worktime`, `tiempototal`) VALUES
+(25, '2021-01-07', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '22:58:00', '00:00:00', '00:00:00', '05:58:00', '00:00:00', '00:00:00', '06:58:00', '06:59:00'),
+(25, '2021-01-08', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '22:56:00', '00:00:00', '00:00:00', '05:57:00', '00:00:00', '00:00:00', '06:57:00', '07:00:00'),
+(25, '2021-01-10', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '23:20:00', '00:00:00', '00:00:00', '05:45:00', '00:20:00', '00:15:00', '06:24:00', '06:24:00'),
+(25, '2021-01-11', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '23:30:00', '00:00:00', '00:00:00', '06:04:00', '00:30:00', '00:00:00', '06:29:00', '06:34:00'),
+(25, '2022-01-09', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '23:16:00', '00:00:00', '00:00:00', '06:54:00', '00:16:00', '00:00:00', '06:43:00', '07:38:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -141,6 +176,12 @@ ALTER TABLE `departamaneto`
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`idempleado`),
   ADD KEY `iddepartamento` (`iddepartamento`);
+
+--
+-- Indices de la tabla `nuevo`
+--
+ALTER TABLE `nuevo`
+  ADD PRIMARY KEY (`id`,`fecha`);
 
 --
 -- Indices de la tabla `usuarios`
