@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2020 a las 20:10:09
+-- Tiempo de generación: 24-01-2020 a las 20:38:31
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.26
 
@@ -21,42 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `asistencia`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `checkin`
---
-
-CREATE TABLE `checkin` (
-  `idempleado` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `horarioentrada` time NOT NULL,
-  `inciob` time NOT NULL,
-  `salidab` time NOT NULL,
-  `horariosalida` time NOT NULL,
-  `checkinicio` time NOT NULL,
-  `chekinciob` time DEFAULT NULL,
-  `checksalidab` time DEFAULT NULL,
-  `checksalida` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `checkin`
---
-
-INSERT INTO `checkin` (`idempleado`, `fecha`, `horarioentrada`, `inciob`, `salidab`, `horariosalida`, `checkinicio`, `chekinciob`, `checksalidab`, `checksalida`) VALUES
-(25, '0000-00-00', '12:11:00', '16:11:00', '17:11:00', '22:11:00', '11:46:00', '00:00:00', '00:00:00', '22:15:00'),
-(25, '2020-01-07', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:46:00', '00:00:00', '00:00:00', '22:15:00'),
-(25, '2020-01-08', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '12:12:00', '00:00:00', '00:00:00', '22:21:00'),
-(25, '2020-01-09', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:49:00', '00:00:00', '00:00:00', '22:47:00'),
-(25, '2020-01-10', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:55:00', '00:00:00', '00:00:00', '19:53:00'),
-(25, '2020-01-11', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '12:00:00', '00:00:00', '00:00:00', '21:33:00'),
-(25, '2020-01-12', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '12:15:00', '00:00:00', '00:00:00', '22:15:00'),
-(25, '2020-01-13', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:30:00', '00:00:00', '00:00:00', '22:18:00'),
-(25, '2020-01-14', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '12:23:00', '00:00:00', '00:00:00', '22:24:00'),
-(25, '2020-01-15', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '12:00:00', '00:00:00', '00:00:00', '23:10:00'),
-(25, '2020-01-16', '12:00:00', '16:00:00', '17:00:00', '22:00:00', '11:49:00', '00:00:00', '00:00:00', '23:58:00');
 
 -- --------------------------------------------------------
 
@@ -104,7 +68,7 @@ INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `iddepartamento`) V
 --
 
 CREATE TABLE `nuevo` (
-  `id` int(11) NOT NULL,
+  `idempleado` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `horingreso` time NOT NULL,
   `horibi` time DEFAULT NULL,
@@ -124,7 +88,7 @@ CREATE TABLE `nuevo` (
 -- Volcado de datos para la tabla `nuevo`
 --
 
-INSERT INTO `nuevo` (`id`, `fecha`, `horingreso`, `horibi`, `horibs`, `horisalida`, `maringreso`, `maribi`, `maribs`, `marsalida`, `tardanza`, `temprano`, `worktime`, `tiempototal`) VALUES
+INSERT INTO `nuevo` (`idempleado`, `fecha`, `horingreso`, `horibi`, `horibs`, `horisalida`, `maringreso`, `maribi`, `maribs`, `marsalida`, `tardanza`, `temprano`, `worktime`, `tiempototal`) VALUES
 (25, '2021-01-07', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '22:58:00', '00:00:00', '00:00:00', '05:58:00', '00:00:00', '00:00:00', '06:58:00', '06:59:00'),
 (25, '2021-01-08', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '22:56:00', '00:00:00', '00:00:00', '05:57:00', '00:00:00', '00:00:00', '06:57:00', '07:00:00'),
 (25, '2021-01-10', '23:00:00', '00:00:00', '00:00:00', '06:00:00', '23:20:00', '00:00:00', '00:00:00', '05:45:00', '00:20:00', '00:15:00', '06:24:00', '06:24:00'),
@@ -159,12 +123,6 @@ INSERT INTO `usuarios` (`Id`, `Nombres`, `Apellidos`, `Correo`, `Contraseña`, `
 --
 
 --
--- Indices de la tabla `checkin`
---
-ALTER TABLE `checkin`
-  ADD PRIMARY KEY (`idempleado`,`fecha`);
-
---
 -- Indices de la tabla `departamaneto`
 --
 ALTER TABLE `departamaneto`
@@ -181,7 +139,7 @@ ALTER TABLE `empleados`
 -- Indices de la tabla `nuevo`
 --
 ALTER TABLE `nuevo`
-  ADD PRIMARY KEY (`id`,`fecha`);
+  ADD PRIMARY KEY (`idempleado`,`fecha`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -194,16 +152,16 @@ ALTER TABLE `usuarios`
 --
 
 --
--- Filtros para la tabla `checkin`
---
-ALTER TABLE `checkin`
-  ADD CONSTRAINT `idempleado` FOREIGN KEY (`idempleado`) REFERENCES `empleados` (`idempleado`);
-
---
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
   ADD CONSTRAINT `iddepartamento` FOREIGN KEY (`iddepartamento`) REFERENCES `departamaneto` (`iddepartamento`);
+
+--
+-- Filtros para la tabla `nuevo`
+--
+ALTER TABLE `nuevo`
+  ADD CONSTRAINT `nuevo_ibfk_1` FOREIGN KEY (`idempleado`) REFERENCES `empleados` (`idempleado`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
