@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+#crear pdo
+$pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
+#lista de todos talleres 
+$sql="SELECT * FROM nuevo";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,22 +60,31 @@
                     <table class="2">
                         <thead>
                             <tr>
-                            <th>Nombre</th><th>Tardanzas</th><th>Antes</th><th>Incompletas</th><th>Otros motivos</th><th>Total</th><th>Ausencias no pagadas</th>
+                            <th>Nombre</th><th>fecha</th><th>Horario de Entrada</th><th>Inicio de Break</th><th>Salida de Break</th><th>Horario de salida</th><th>Marcacion de ingreso</th><th>Marcacion de inicio de break</th><th>Marcacion de fin de break</th><th>Marcacion de salida</th><th>tardanza</th><th>temprano</th><th>worktime</th><th>Tiempo total</th>
                             </tr>
                         </thead>
 
-                        <tr>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
-                        <tr>
-                            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-                        </tr>
+                        <?php
+                            foreach($pdo->query($sql) as $fila) { ?>
+                                <tr>
+                                <td><?php echo $fila["id"] ?></td>
+                                <td><?php echo $fila["fecha"] ?></td>
+                                <td><?php echo $fila["horingreso"] ?></td>
+                                <td><?php echo $fila["horibi"] ?></td>
+                                <td><?php echo $fila["horibs"] ?></td>
+                                <td><?php echo $fila["horisalida"] ?></td>
+                                <td><?php echo $fila["maringreso"] ?></td>
+                                <td><?php echo $fila["maribi"] ?></td>
+                                <td><?php echo $fila["maribs"] ?></td>
+                                <td><?php echo $fila["marsalida"] ?></td>
+                                <td><?php echo $fila["tardanza"] ?></td>
+                                <td><?php echo $fila["temprano"] ?></td>
+                                <td><?php echo $fila["worktime"] ?></td>
+                                <td><?php echo $fila["tiempototal"] ?></td>
+                                </tr>
+                                <?php
+                                }
+                        ?>
                     </table>
                 </div>
     </form>
