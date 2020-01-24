@@ -3,7 +3,9 @@
 #crear pdo
 $pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
 #lista de todos talleres 
-$sql="SELECT * FROM nuevo";
+$sql1="SELECT * FROM nuevo n inner join empleados e on e.idempleado=n.idempleado";
+
+$sql2="SELECT * FROM local";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +28,9 @@ $sql="SELECT * FROM nuevo";
             </div>         
         </div>       
     </header>
-       <div>
+    
+			
+		
     <form action="rangotienda.php" method="post">
     
     <input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
@@ -34,12 +38,24 @@ $sql="SELECT * FROM nuevo";
             
             <tr>
                 <td>
+                
                     <select>
-                        <option value="volvo">ATE</option>
-                        <option value="saab">LA MOLINA</option>
-                        <option value="mercedes">SANTA ANITA</option>
-                        <option value="audi">SJL</option>
+                        <?php foreach($pdo->query($sql2) as $fila) { ?>
+                            
+                            <option value= <?php echo $fila["nombre"] ?> > <?php echo $fila["nombre"] ?> </option>7
+                        <?php } ?>
                     </select>
+                     
+                </td>
+                
+                <td>
+                            
+                    <select>
+                        <?php foreach($pdo->query($sql3) as $fila) { ?>
+                            <option value= <?php echo $fila["nombre"] ?> > <?php echo $fila["nombre"] ?> </option>7
+                            <?php } ?>
+                    </select>
+                    
                 </td>
                 <td>
                     <input type="date" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" step="7" value="">
@@ -67,7 +83,7 @@ $sql="SELECT * FROM nuevo";
                         <?php
                             foreach($pdo->query($sql) as $fila) { ?>
                                 <tr>
-                                <td><?php echo $fila["id"] ?></td>
+                                <td><?php echo $fila["nombre"] ?></td>
                                 <td><?php echo $fila["fecha"] ?></td>
                                 <td><?php echo $fila["horingreso"] ?></td>
                                 <td><?php echo $fila["horibi"] ?></td>
