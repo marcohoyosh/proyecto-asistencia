@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-01-2020 a las 14:55:13
+-- Tiempo de generación: 26-01-2020 a las 00:16:01
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.26
 
@@ -31,7 +31,6 @@ SET time_zone = "+00:00";
 CREATE TABLE `departamento` (
   `iddepartamento` int(11) NOT NULL,
   `Nombre` varchar(30) NOT NULL,
-  `descripcion` varchar(40) NOT NULL,
   `idlocal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -39,23 +38,23 @@ CREATE TABLE `departamento` (
 -- Volcado de datos para la tabla `departamento`
 --
 
-INSERT INTO `departamento` (`iddepartamento`, `Nombre`, `descripcion`, `idlocal`) VALUES
-(1, 'ventas', 'donde venden', 1),
-(2, 'rrhh', 'donderrrhh', 1),
-(3, 'contabilidad', 'donde cuentan', 1),
-(4, 'marketing', 'donde m', 1),
-(5, 'tthh', 'donde tthh', 1),
-(6, 'tesoreria', 'donde cuentantmb', 1),
-(7, 'TI', 'sistemas', 1),
-(8, 'opraciones', 'vigilan', 1),
-(9, 'recepcion', 'los que recepcionan', 1),
-(10, 'logistica', 'donde logi', 1),
-(11, 'proyectos', 'donde p', 1),
-(12, 'dsjl', '', 6),
-(13, 'dmolina', 'donde tthh', 5),
-(14, 'dchorrillos', 'queda en chorrillos', 2),
-(15, 'dbarranco', 'en barranco', 3),
-(16, 'dpto abancay', 'av abancay', 4);
+INSERT INTO `departamento` (`iddepartamento`, `Nombre`, `idlocal`) VALUES
+(1, 'ventas', 1),
+(2, 'rrhh', 1),
+(3, 'contabilidad', 1),
+(4, 'marketing', 1),
+(5, 'tthh', 1),
+(6, 'tesoreria', 1),
+(7, 'TI', 1),
+(8, 'opraciones', 1),
+(9, 'recepcion', 1),
+(10, 'logistica', 1),
+(11, 'proyectos', 1),
+(12, 'dsjl', 6),
+(13, 'dmolina', 5),
+(14, 'dchorrillos', 2),
+(15, 'dbarranco', 3),
+(16, 'dpto abancay', 4);
 
 -- --------------------------------------------------------
 
@@ -66,8 +65,8 @@ INSERT INTO `departamento` (`iddepartamento`, `Nombre`, `descripcion`, `idlocal`
 CREATE TABLE `empleados` (
   `idempleado` int(11) NOT NULL,
   `nombre` varchar(30) NOT NULL,
-  `apellido` varchar(30) NOT NULL,
-  `iddepartamento` int(11) NOT NULL
+  `apellido` varchar(30) DEFAULT NULL,
+  `iddepartamento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -76,6 +75,40 @@ CREATE TABLE `empleados` (
 
 INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `iddepartamento`) VALUES
 (25, 'jorge', 'Muñoz', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hijo`
+--
+
+CREATE TABLE `hijo` (
+  `idhijo` int(255) NOT NULL,
+  `idpadre` int(255) NOT NULL DEFAULT 0,
+  `hijo` text COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `hijo`
+--
+
+INSERT INTO `hijo` (`idhijo`, `idpadre`, `hijo`) VALUES
+(1, 1, 'ventas'),
+(2, 1, 'rrhh'),
+(3, 1, 'contabilidad'),
+(4, 1, 'marketing'),
+(5, 1, 'tthh'),
+(6, 1, 'tesoreria'),
+(7, 1, 'TI'),
+(8, 1, 'opraciones'),
+(9, 1, 'recepcion'),
+(10, 1, 'logistica'),
+(11, 1, 'proyectos'),
+(12, 6, 'dsjl'),
+(13, 5, 'dmolina'),
+(14, 2, 'dchorrillos'),
+(15, 3, 'dbarranco'),
+(16, 4, 'dpto abancay');
 
 -- --------------------------------------------------------
 
@@ -100,6 +133,25 @@ INSERT INTO `local` (`idlocal`, `nombre`, `direccion`) VALUES
 (4, 'abancay', 'av abancay 777'),
 (5, 'molina', 'av javierprado666'),
 (6, 'sjl3', 'porton');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nieto`
+--
+
+CREATE TABLE `nieto` (
+  `idnieto` int(255) NOT NULL,
+  `idhijo` int(255) NOT NULL DEFAULT 0,
+  `nieto` text COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `nieto`
+--
+
+INSERT INTO `nieto` (`idnieto`, `idhijo`, `nieto`) VALUES
+(6, 4, 'Jorge Muñoz');
 
 -- --------------------------------------------------------
 
@@ -138,6 +190,30 @@ INSERT INTO `nuevo` (`idempleado`, `fecha`, `horingreso`, `horibi`, `horibs`, `h
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `padre`
+--
+
+CREATE TABLE `padre` (
+  `idpadre` int(255) NOT NULL,
+  `padre` text COLLATE latin1_spanish_ci NOT NULL,
+  `direccion` varchar(60) COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `padre`
+--
+
+INSERT INTO `padre` (`idpadre`, `padre`, `direccion`) VALUES
+(1, 'corporacion', 'av javier prado'),
+(2, 'chorrillos', 'av chorrillos'),
+(3, 'barranco', 'av barranco 123'),
+(4, 'abancay', 'av abancay 777'),
+(5, 'molina', 'av javierprado666'),
+(6, 'sjl3', 'porton');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -156,7 +232,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`Id`, `Nombres`, `Apellidos`, `Correo`, `Contraseña`, `Rol`) VALUES
 (1, 'Marco', 'Hoyos', 'maro.hoyos@gmail.com', '123456', 0),
-(2, 'rodrigo', 'mozo', 'rodrigomozo@gmail.com', '654321', 0);
+(2, 'rodrigo', 'mozo', 'rodrigomozo@gmail.com', '654321', 0),
+(3, 'Joshep', 'Mendoza', 'mendoza.joshep@gmail.com', '123456', 1);
 
 --
 -- Índices para tablas volcadas
@@ -173,8 +250,13 @@ ALTER TABLE `departamento`
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD PRIMARY KEY (`idempleado`),
-  ADD KEY `idpdepfk` (`iddepartamento`);
+  ADD PRIMARY KEY (`idempleado`);
+
+--
+-- Indices de la tabla `hijo`
+--
+ALTER TABLE `hijo`
+  ADD PRIMARY KEY (`idhijo`);
 
 --
 -- Indices de la tabla `local`
@@ -183,16 +265,50 @@ ALTER TABLE `local`
   ADD PRIMARY KEY (`idlocal`);
 
 --
+-- Indices de la tabla `nieto`
+--
+ALTER TABLE `nieto`
+  ADD PRIMARY KEY (`idnieto`);
+
+--
 -- Indices de la tabla `nuevo`
 --
 ALTER TABLE `nuevo`
   ADD PRIMARY KEY (`idempleado`,`fecha`);
 
 --
+-- Indices de la tabla `padre`
+--
+ALTER TABLE `padre`
+  ADD PRIMARY KEY (`idpadre`);
+
+--
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `hijo`
+--
+ALTER TABLE `hijo`
+  MODIFY `idhijo` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT de la tabla `nieto`
+--
+ALTER TABLE `nieto`
+  MODIFY `idnieto` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `padre`
+--
+ALTER TABLE `padre`
+  MODIFY `idpadre` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
