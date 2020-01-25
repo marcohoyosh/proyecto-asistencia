@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2020 a las 20:38:31
+-- Tiempo de generación: 25-01-2020 a las 14:55:13
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.26
 
@@ -25,21 +25,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamaneto`
+-- Estructura de tabla para la tabla `departamento`
 --
 
-CREATE TABLE `departamaneto` (
+CREATE TABLE `departamento` (
   `iddepartamento` int(11) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `descripcion` varchar(30) NOT NULL
+  `Nombre` varchar(30) NOT NULL,
+  `descripcion` varchar(40) NOT NULL,
+  `idlocal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `departamaneto`
+-- Volcado de datos para la tabla `departamento`
 --
 
-INSERT INTO `departamaneto` (`iddepartamento`, `nombre`, `descripcion`) VALUES
-(1, 'ventas', 'area de ventas');
+INSERT INTO `departamento` (`iddepartamento`, `Nombre`, `descripcion`, `idlocal`) VALUES
+(1, 'ventas', 'donde venden', 1),
+(2, 'rrhh', 'donderrrhh', 1),
+(3, 'contabilidad', 'donde cuentan', 1),
+(4, 'marketing', 'donde m', 1),
+(5, 'tthh', 'donde tthh', 1),
+(6, 'tesoreria', 'donde cuentantmb', 1),
+(7, 'TI', 'sistemas', 1),
+(8, 'opraciones', 'vigilan', 1),
+(9, 'recepcion', 'los que recepcionan', 1),
+(10, 'logistica', 'donde logi', 1),
+(11, 'proyectos', 'donde p', 1),
+(12, 'dsjl', '', 6),
+(13, 'dmolina', 'donde tthh', 5),
+(14, 'dchorrillos', 'queda en chorrillos', 2),
+(15, 'dbarranco', 'en barranco', 3),
+(16, 'dpto abancay', 'av abancay', 4);
 
 -- --------------------------------------------------------
 
@@ -59,7 +75,31 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`idempleado`, `nombre`, `apellido`, `iddepartamento`) VALUES
-(25, 'jorge', 'perez', 1);
+(25, 'jorge', 'Muñoz', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `local`
+--
+
+CREATE TABLE `local` (
+  `idlocal` int(11) NOT NULL,
+  `nombre` varchar(30) NOT NULL,
+  `direccion` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `local`
+--
+
+INSERT INTO `local` (`idlocal`, `nombre`, `direccion`) VALUES
+(1, 'corporacion', 'av javier prado'),
+(2, 'chorrillos', 'av chorrillos'),
+(3, 'barranco', 'av barranco 123'),
+(4, 'abancay', 'av abancay 777'),
+(5, 'molina', 'av javierprado666'),
+(6, 'sjl3', 'porton');
 
 -- --------------------------------------------------------
 
@@ -123,17 +163,24 @@ INSERT INTO `usuarios` (`Id`, `Nombres`, `Apellidos`, `Correo`, `Contraseña`, `
 --
 
 --
--- Indices de la tabla `departamaneto`
+-- Indices de la tabla `departamento`
 --
-ALTER TABLE `departamaneto`
-  ADD PRIMARY KEY (`iddepartamento`);
+ALTER TABLE `departamento`
+  ADD PRIMARY KEY (`iddepartamento`),
+  ADD KEY `nuevo3` (`idlocal`);
 
 --
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`idempleado`),
-  ADD KEY `iddepartamento` (`iddepartamento`);
+  ADD KEY `idpdepfk` (`iddepartamento`);
+
+--
+-- Indices de la tabla `local`
+--
+ALTER TABLE `local`
+  ADD PRIMARY KEY (`idlocal`);
 
 --
 -- Indices de la tabla `nuevo`
@@ -152,10 +199,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Filtros para la tabla `departamento`
+--
+ALTER TABLE `departamento`
+  ADD CONSTRAINT `nuevo3` FOREIGN KEY (`idlocal`) REFERENCES `local` (`idlocal`);
+
+--
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD CONSTRAINT `iddepartamento` FOREIGN KEY (`iddepartamento`) REFERENCES `departamaneto` (`iddepartamento`);
+  ADD CONSTRAINT `idpdepfk` FOREIGN KEY (`iddepartamento`) REFERENCES `departamento` (`iddepartamento`);
 
 --
 -- Filtros para la tabla `nuevo`
