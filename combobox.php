@@ -11,5 +11,6 @@ if($registro=$query->fetch_array())
 	while($registro=$query->fetch_array());
 }
 
+
 echo json_encode($valores);
 ?>

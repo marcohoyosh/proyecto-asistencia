@@ -1,6 +1,6 @@
 <?php
 $dbhost="localhost";
-$dbname="asistencia";
+$dbname="asistencia2";
 $dbuser="root";
 $dbpass="";
 
