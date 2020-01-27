@@ -1,3 +1,34 @@
+
+<?php session_start(); 
+
+#crear pdo
+$pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
+#lista de todos talleres 
+$sql="SELECT * FROM nuevo n inner join empleados e on e.idempleado=n.idempleado";
+
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="estilo.css">
+    <title>supervision</title>
+    
+</head>
+<body>
+    <header class="site-header inicio">    
+        <div class='contenedor contenido-header' id="myHeader">
+            <div class="barra">   
+                <a href=" index.php"><img src="imagenes/cmlogo.png" alt="Logo" height="85px" class="logo"></a>
+                <h3>Bienvenido <?php echo $_SESSION["nombres"] ?> <a href="cerrar_cesion.php">Cerrar Sesion</a></h3>
+                <nav class="navegacion">                                   
+                                   
+                </nav>   
+            </div>         
+        </div>
+</form>	
 <?php
 require_once "config.inc.php";
 
@@ -76,10 +107,7 @@ function combo($db,$nombre,$valor,$tabla,$campos,$condicion,$orden,$modo,$espadr
 	</style>
 </head>
 <body>
-<h1>Combobox o Select Dependientes con PHP, Json y Jquery</h1>
-<p>
-<strong>Nota:</strong> Para nuestro ejemplo, utilizamos 3 selects. Cada uno har&aacute; recargar a su hijo mediante json</p>
-</p>
+<h1>Control de Asistencia</h1>
 <div id="resultados">
 <?php
 if (isset($_POST)) print_r($_POST);
@@ -87,12 +115,70 @@ if (isset($_POST)) print_r($_POST);
 </div>
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="combobox">
 	<fieldset>
-		<p><label>Padre:</label><?php combo($db,"idpadre","","padre","idpadre,padre",1,"padre","asc",1); ?></p>
-		<p id="combo_1"><label>Hijo:</label><?php combo($db,"idhijo","","hijo","idhijo,hijo",1,"hijo","asc",0); ?></p>
-		<p id="combo_2"><label>Nieto:</label><?php combo($db,"idnieto","","nieto","idnieto,nieto",1,"nieto","asc",0); ?></p>
+		<p><label>Local:</label><?php combo($db,"idpadre","","padre","idpadre,padre",1,"padre","asc",1); ?></p>
+		<p id="combo_1"><label>Departamento:</label><?php combo($db,"idhijo","","hijo","idhijo,hijo",1,"hijo","asc",0); ?></p>
+		<p id="combo_2"><label>Empleado:</label><?php combo($db,"idnieto","","nieto","idnieto,nieto",1,"nieto","asc",0); ?></p>
 		<input type="submit" name="submit" value="Mostrar resultados">
 	</fieldset>
 </form>
 
+</body>
+</html>
+    <form action="rangotienda.php" method="post">
+    
+    <input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
+        <table class="jorge" caption="juan">
+            
+            <tr>  
+                
+    
+                <td>
+                    <input type="date" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" step="7" value="">
+
+                </td>
+                <td>
+                    <input type="date" name="fecha" step="1" min="2013-01-01" max="2020-12-31" value="fecha1">
+
+                </td>
+                <td>
+                    <button type="submit" class="boton">Consultar</button>
+                </td>
+            </tr>
+        </table>
+        
+                <div id="main-container">
+
+                    <table class="2">
+                        <thead>
+                            <tr>
+                            <th>Nombre</th><th>fecha</th><th>Horario de Entrada</th><th>Inicio de Break</th><th>Salida de Break</th><th>Horario de salida</th><th>Marcacion de ingreso</th><th>Marcacion de inicio de break</th><th>Marcacion de fin de break</th><th>Marcacion de salida</th><th>tardanza</th><th>temprano</th><th>worktime</th><th>Tiempo total</th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                            foreach($pdo->query($sql) as $fila) { ?>
+                                <tr>
+                                <td><?php echo $fila["nombre"] ?></td>
+                                <td><?php echo $fila["fecha"] ?></td>
+                                <td><?php echo $fila["horingreso"] ?></td>
+                                <td><?php echo $fila["horibi"] ?></td>
+                                <td><?php echo $fila["horibs"] ?></td>
+                                <td><?php echo $fila["horisalida"] ?></td>
+                                <td><?php echo $fila["maringreso"] ?></td>
+                                <td><?php echo $fila["maribi"] ?></td>
+                                <td><?php echo $fila["maribs"] ?></td>
+                                <td><?php echo $fila["marsalida"] ?></td>
+                                <td><?php echo $fila["tardanza"] ?></td>
+                                <td><?php echo $fila["temprano"] ?></td>
+                                <td><?php echo $fila["worktime"] ?></td>
+                                <td><?php echo $fila["tiempototal"] ?></td>
+                                </tr>
+                                <?php
+                                }
+                        ?>
+                    </table>
+                </div>
+    </form>
+    </div>
 </body>
 </html>
