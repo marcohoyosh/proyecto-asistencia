@@ -49,7 +49,8 @@ session_start();
     <link rel="stylesheet" href="hojaestilos.css">
     <title>Sesion</title>
 </head>
-<body>
+<body bgcolor="#5F5A59">
+    
     <div class="contenido">
     <?php if(isset($_GET["m"])){ 
         if($_GET["m"]=="p"){ ?>

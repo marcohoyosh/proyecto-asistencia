@@ -2,9 +2,9 @@
 <?php session_start(); 
 
 #crear pdo
-$pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
+$pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
 #lista de todos talleres 
-$sql="SELECT * FROM nuevo n inner join empleados e on e.idempleado=n.idempleado";
+$sql="SELECT * FROM nuevo n inner join nieto ni on ni.idnieto=n.idempleado";
 
 ?>
 <!DOCTYPE html>
@@ -118,6 +118,21 @@ if (isset($_POST)) print_r($_POST);
 		<p><label>Local:</label><?php combo($db,"idpadre","","padre","idpadre,padre",1,"padre","asc",1); ?></p>
 		<p id="combo_1"><label>Departamento:</label><?php combo($db,"idhijo","","hijo","idhijo,hijo",1,"hijo","asc",0); ?></p>
 		<p id="combo_2"><label>Empleado:</label><?php combo($db,"idnieto","","nieto","idnieto,nieto",1,"nieto","asc",0); ?></p>
+		<table class="jorge" caption="juan">
+            
+            <tr>  
+                
+    
+                <td>
+                    <input type="date" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" step="7" value="">
+
+                </td>
+                <td>
+                    <input type="date" name="fecha" step="1" min="2013-01-01" max="2020-12-31" value="fecha1">
+
+                </td>
+			</tr>
+		</table>
 		<input type="submit" name="submit" value="Mostrar resultados">
 	</fieldset>
 </form>
@@ -158,7 +173,7 @@ if (isset($_POST)) print_r($_POST);
                         <?php
                             foreach($pdo->query($sql) as $fila) { ?>
                                 <tr>
-                                <td><?php echo $fila["nombre"] ?></td>
+                                <td><?php echo $fila["nieto"] ?></td>
                                 <td><?php echo $fila["fecha"] ?></td>
                                 <td><?php echo $fila["horingreso"] ?></td>
                                 <td><?php echo $fila["horibi"] ?></td>
