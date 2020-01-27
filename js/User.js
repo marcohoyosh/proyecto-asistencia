@@ -16,8 +16,8 @@ Users.prototype.Adduser= function(){
         }
     });
 }
-Users.prototype.searUser= function(){
+Users.prototype.searchUser= function(){
     $post(this.action, {nameSearch: this.name}, function(response){
-        $("#resultSerach").html(response);
+        $("#resultSearch").html(response);
     });
 }
