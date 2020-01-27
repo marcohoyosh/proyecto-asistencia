@@ -108,11 +108,7 @@ function combo($db,$nombre,$valor,$tabla,$campos,$condicion,$orden,$modo,$espadr
 </head>
 <body>
 <h1>Control de Asistencia</h1>
-<div id="resultados">
-<?php
-if (isset($_POST)) print_r($_POST);
-?>
-</div>
+
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>" class="combobox">
 	<fieldset>
 		<p><label>Local:</label><?php combo($db,"idpadre","","padre","idpadre,padre",1,"padre","asc",1); ?></p>
