@@ -41,14 +41,17 @@ $(document).ready(function(){
   })
 
 
+ 
+
 
   $('#enviar').on('click', function(){
-    var resultado = 'Local:  ' + $('#lista_reproduccion option:selected').text() +
-    ' Departamento: ' + $('#videos option:selected').text() +
-    ' Empleado: ' + $('#nietos option:selected').text()
+    var id = $('#nietos').val()
+    $.ajax({
+      type: 'POST',
+      url: 'procesar.php',
+      data: {'idnieto': id}
+    })
     
-
-    $('#resultado1').html(resultado)
   })
 
 })

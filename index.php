@@ -1,11 +1,20 @@
 
 <?php session_start(); 
-
-#crear pdo
-$pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
-#lista de todos talleres 
-$sql="SELECT * FROM nuevo n inner join nieto ni on ni.idnieto=n.idempleado";
-
+if(isset($_GET["w"])) {
+	if(isset($_GET["i"])){
+		$id = $_GET["i"];
+		}
+		if(isset($_GET["f"])){
+			$fecha1 = $_GET["f"];
+		}
+		if(isset($_GET["g"])){
+			$fecha2 = $_GET["g"]; 
+		}
+			$pdo2=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
+			#lista de todos talleres 
+			$sql2="SELECT * FROM nuevo n inner join nieto ni on ni.idnieto=n.idempleado where n.idempleado = $id and n.fecha between $fecha1 and $fecha2";
+	}
+	
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
@@ -43,64 +52,53 @@ $sql="SELECT * FROM nuevo n inner join nieto ni on ni.idnieto=n.idempleado";
 
 		<fieldset>
 
-		
+		 <form action="procesar.php" method="GET">
 			
-			<div class="container">
-					<div class="page-header text-left">
-					<h1>Combobox (select) dinámicos <small>Con Php, Mysql y Jquery (Ajax)</small></h1>
-					</div>
-					
-					<div class="col-md-4">
-						<p>Local
-						<select id="lista_reproduccion" name="lista_reproduccion" class="form-control">
-						</select>
-						</p>
-					</div>
-					<div class="col-md-4">
-						<p>Departamento
-						<select id="videos" name="video" class="form-control">
-						</select>
-					</p>
-					</div>
-					<div class="col-md-4">
-						<p>Empleados
-						<select id="nietos" name="nieto" class="form-control">
-						</select>
-						</p>
-					</div>
-					<table class="jorge" caption="juan">
-					
-					<tr>  
-						
-			
-						<td>
-							<input type="date" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" step="7" value="">
-
-						</td>
-						<td>
-							<input type="date" name="fecha" step="1" min="2013-01-01" max="2020-12-31" value="fecha1">
-
-						</td>
-					</tr>
-					</table>
-					<div class="row">
+				<div class="container">
+						<div class="page-header text-left">
+						</div>
 						
 						<div class="col-md-4">
-							<p><br><button id="enviar" type="submit" class="btn btn-default btn-block">Enviar</button></p>
+							<p>Local
+							<select id="lista_reproduccion" name="lista_reproduccion" class="form-control">
+							</select>
+							</p>
 						</div>
-					
+						<div class="col-md-4">
+							<p>Departamento
+							<select id="videos" name="video" class="form-control">
+							</select>
+						</p>
 						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<p><b>El resultado es: </b></p><p id="resultado1"></p>
-							</div>
+						<div class="col-md-4">
+							<p>Empleados
+							<select id="nietos" name="nieto" class="form-control">
+							</select>
+							</p>
 						</div>
-					</div>
+						
+								<input type="date" id="fecha1" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" >
 
-				
-				
-				
-			</div>
+							
+								<input type="date" id="fecha2" name="fecha2" step="1" min="2013-01-01" max="2020-12-31" >
+
+							
+						<div class="row">
+							
+							<div class="col-md-4">
+								<p><br><button id="enviar" type="submit" class="btn btn-default btn-block">Enviar</button></p>
+							</div>
+						
+							</div>
+							<div class="row">
+								<div class="col-md-4">
+									<p><b>El resultado es: </b></p><p id="resultado1"></p>
+								</div>
+							</div>
+						</div>							
+					
+				</div>
+			</form>
 		</fieldset>
 
 				
@@ -112,7 +110,30 @@ $sql="SELECT * FROM nuevo n inner join nieto ni on ni.idnieto=n.idempleado";
 									</tr>
 								</thead>
 						<tbody id="resultSearch">
-
+	 
+						<?php if(isset($_GET["w"])) {
+							
+								foreach($pdo2->query($sql2) as $fila){ ?>
+									<tr>
+										
+										<td><?php echo $fila["idempleado"] ?></td>
+										<td><?php echo $fila["fecha"] ?></td>
+										<td><?php echo $fila["horingreso"] ?></td>
+										<td><?php echo $fila["horibi"] ?></td>
+										<td><?php echo $fila["horibs"] ?></td>
+										<td><?php echo $fila["horisalida"] ?></td>
+										<td><?php echo $fila["maringreso"] ?></td>
+										<td><?php echo $fila["maribi"] ?></td>
+										<td><?php echo $fila["maribs"] ?></td>
+										<td><?php echo $fila["marsalida"] ?></td>
+										<td><?php echo $fila["tardanza"] ?></td>
+										<td><?php echo $fila["temprano"] ?></td>
+										<td><?php echo $fila["worktime"] ?></td>
+										<td><?php echo $fila["tiempototal"] ?></td>
+										
+									</tr>
+									<?php } 
+						 } ?>			
 						</tbody>
 				</table>
 				

@@ -65,7 +65,7 @@ session_start();
                 <h3 style=>Inicia sesión</h3>
                     <div class="elemento">
                     
-                    <p style="color:black">Nombre de usuaario:</p>
+                    <p style="color:black">Nombre de usuario:</p>
                     <input type="text" name="u" id="" placeholder="Nombre de usuario" autofocus required>
                     </div>
                     <div class="elemento">
@@ -78,6 +78,9 @@ session_start();
                     </div>
                     <button type="submit" class="elemento">Entrar</button>
                     
+            </div>
+            <div>
+                
             </div>
                 
 
