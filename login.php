@@ -47,9 +47,9 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="hojaestilos.css">
-    <title>Sesion</title>
+    <title>Asistencia</title>
 </head>
-<body bgcolor="#5F5A59">
+<body >
     
     <div class="contenido">
     <?php if(isset($_GET["m"])){ 
@@ -61,19 +61,20 @@ session_start();
         <form action="procesar-login.php" method="post">
         
             <div class="Formulario">
-                <h2 style="color:rgb(156, 28, 11);padding=0">Ingresa con tu cuenta</h2>
+                <img src="imagenes/logo.png">
+                <h3 style=>Inicia sesión</h3>
                     <div class="elemento">
                     
-                    <p style="color:red">Nombre de usuario:</p>
-                    <input type="text" name="u" id="" placeholder="nombre de usuario" autofocus required>
+                    <p style="color:black">Nombre de usuaario:</p>
+                    <input type="text" name="u" id="" placeholder="Nombre de usuario" autofocus required>
                     </div>
                     <div class="elemento">
-                    <p style="color:red">Contraseña:</p>
-                    <input type="password" name="p" id="" placeholder="contraseña" required>
+                    <p style="color:black">Contraseña:</p>
+                    <input type="password" name="p" id="" placeholder="Contraseña" required>
                     </div>
                     <div class="elemento iniciada">
                     <input type="checkbox" name="s" value="1">
-                    Mantener sesión iniciada
+                    <label for="s">Mantener sesión iniciada</label>                    
                     </div>
                     <button type="submit" class="elemento">Entrar</button>
                     
