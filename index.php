@@ -1,21 +1,6 @@
-
-<?php session_start(); 
-if(isset($_GET["w"])) {
-	if(isset($_GET["i"])){
-		$id = $_GET["i"];
-		}
-		if(isset($_GET["f"])){
-			$fecha1 = $_GET["f"];
-		}
-		if(isset($_GET["g"])){
-			$fecha2 = $_GET["g"]; 
-		}
-			$pdo2=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
-			#lista de todos talleres 
-			$sql2="SELECT * FROM nuevo n inner join nieto ni on ni.idnieto=n.idempleado where n.idempleado = $id and n.fecha between $fecha1 and $fecha2";
-	}
-	
+<?php session_start();
 ?>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
@@ -107,33 +92,12 @@ if(isset($_GET["w"])) {
 				<thead>
 									<tr>
 									<th>Nombre</th><th>fecha</th><th>Horario de Entrada</th><th>Inicio de Break</th><th>Salida de Break</th><th>Horario de salida</th><th>Marcacion de ingreso</th><th>Marcacion de inicio de break</th><th>Marcacion de fin de break</th><th>Marcacion de salida</th><th>tardanza</th><th>temprano</th><th>worktime</th><th>Tiempo total</th>
+									
 									</tr>
 								</thead>
 						<tbody id="resultSearch">
 	 
-						<?php if(isset($_GET["w"])) {
-							
-								foreach($pdo2->query($sql2) as $fila){ ?>
-									<tr>
-										
-										<td><?php echo $fila["idempleado"] ?></td>
-										<td><?php echo $fila["fecha"] ?></td>
-										<td><?php echo $fila["horingreso"] ?></td>
-										<td><?php echo $fila["horibi"] ?></td>
-										<td><?php echo $fila["horibs"] ?></td>
-										<td><?php echo $fila["horisalida"] ?></td>
-										<td><?php echo $fila["maringreso"] ?></td>
-										<td><?php echo $fila["maribi"] ?></td>
-										<td><?php echo $fila["maribs"] ?></td>
-										<td><?php echo $fila["marsalida"] ?></td>
-										<td><?php echo $fila["tardanza"] ?></td>
-										<td><?php echo $fila["temprano"] ?></td>
-										<td><?php echo $fila["worktime"] ?></td>
-										<td><?php echo $fila["tiempototal"] ?></td>
-										
-									</tr>
-									<?php } 
-						 } ?>			
+						
 						</tbody>
 				</table>
 				

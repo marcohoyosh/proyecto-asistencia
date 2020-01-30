@@ -49,7 +49,7 @@ $(document).ready(function(){
     var id = $('#nietos').val();
     var fecha1 =$('#fecha1').val();
     var fecha2= $('#fecha2').val();
-    console.log(id);
+    //console.log(id);
     //console.log(fecha1);
     //console.log(fecha2);
     if(id==0 || fecha1=='' || fecha2==''){
@@ -70,5 +70,6 @@ $(document).ready(function(){
       })
     }
   })
+
 
 })
