@@ -77,8 +77,6 @@ function getDatos(){
         <td> ".$fila["temprano"]." </td>
         <td> ".$fila["worktime"]." </td>
         <td> ".$fila["tiempototal"]." </td>
-        <td> ".$fila["id"]." </td>
-        <td> ".$fila["marcacion"]." </td>
         
         
    
