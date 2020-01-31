@@ -37,7 +37,7 @@
 
 		<fieldset>
 
-		 <form action="procesar.php" method="GET">
+		 <form action="reporte.php" method="POST">
 			
 				<div class="container">
 						<div class="page-header text-left">
@@ -71,8 +71,9 @@
 						<div class="row">
 							
 							<div class="col-md-4">
-								<p><br><button id="enviar" type="submit" class="btn btn-default btn-block">Enviar</button></p>
-							</div>
+								
+								<button type="submit" id="enviar" type="submit" class="boton1" value ="enviar" name ="enviar">Enviar</button> 
+								<button type="submit" id="reporte" type="submit" class="boton2" value ="reporte" name ="reporte">Reporte</button> 
 						
 							</div>
 							<div class="row">
@@ -95,11 +96,13 @@
 									
 									</tr>
 								</thead>
-						<tbody id="resultSearch">
+			 			<tbody id="resultSearch">
 	 
 						
 						</tbody>
 				</table>
+
+				
 				
 			
 				

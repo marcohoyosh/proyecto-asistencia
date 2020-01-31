@@ -1,8 +1,5 @@
 <?php
-
-
-
-require_once 'conexion.php';
+  require_once 'conexion.php';
 
 function getDatos(){
     $id = $_POST["idnieto"];
@@ -40,11 +37,16 @@ function getDatos(){
           if($breaki2 < 0) {
             $breaki2 = $breaki2 * (-1);
           }
-
+          $estado = false;
           if($numfecha1-$numfecha2 < $breaki){
             $breaki = ($numfecha1-$numfecha2);
             $MarcacionBreak = $fila2["tiempo"];
-          } 
+            
+
+          } else if ($numfecha1-$numfecha2 == 0 && !$estado){
+            $MarcacionBreak = $fila2["tiempo"];
+            $estado = true; 
+          }
           if($numfecha1-$numfecha3 <= $breaki2){
             $breaki2 = ($numfecha1-$numfecha2);
             $MarcacionBreakSalida = $fila2["tiempo"];
@@ -61,6 +63,20 @@ function getDatos(){
     if($MarcacionBreakSalida == $fila["maringreso"] || $MarcacionBreakSalida == $fila["marsalida"]){
       $MarcacionBreakSalida = "No marcó fin de Break";
     }
+
+    if ($MarcacionBreak == null){     
+      $empleado = $fila['nieto'];
+      $to = "rodrigo.mozo.01@gmail.com";
+      $subject = "Incorcondancia con el horario";
+      $message = "Probable exceso de tardanza o aunsencia en dia laboral, datos del empleado: \nNombre:" .$empleado. 
+      "\nDia en el que se encuentra la incidencia :" .$fila['fecha'];
+ 
+      mail($to, $subject, $message);
+    }
+    
+    
+
+
         $listas .= " <tr>
                                             
         <td> ".$fila['nieto']." </td>
@@ -87,4 +103,7 @@ function getDatos(){
 }
 
 echo getDatos();
+
+  
+
 ?>
