@@ -72,21 +72,20 @@ $(document).ready(function(){
   })
   
   $('#reporte').on('click', function(e) {
-    e.preventDefault();
-    var id = $('#nietos').val();
-    var fecha1 =$('#fecha1').val();
-    var fecha2= $('#fecha2').val();
-    console.log(id);
-    console.log(fecha1);
-    console.log(fecha2);
-    if(id==0 || fecha1=='' || fecha2==''){
+    var id1 = $('#nietos').val();
+    var fe1 =$('#fecha1').val();
+    var fe2= $('#fecha2').val();
+    console.log(id1);
+    console.log(fe1);
+    console.log(fe2);
+    if(id1==0 || fe1=='' || fe2==''){
       alert('Uno de los campos esta vacio');
     
     }else{
       $.ajax({
         type: 'POST',
         url: 'reporte.php',
-        data: {'nieto': id, 'fecha1' : fecha1, 'fecha2' : fecha2}
+        data: {'nieto': id1, 'fecha1' : fe1, 'fecha2' : fe2}
       })
     }
   })
