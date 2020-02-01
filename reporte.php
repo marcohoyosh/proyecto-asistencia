@@ -1,5 +1,4 @@
 <?php    
-    require_once 'conexion.php';
 
     $id = $_POST["nieto"];
     $fe1 = $_POST["fecha1"];
@@ -7,7 +6,6 @@
 
     //Incluimos librería y archivo de conexión
 	require 'Classes/PHPExcel.php';
-	require 'conexion.php';
 	
 	//Objeto de PHPExcel
 	$objPHPExcel  = new PHPExcel();
@@ -37,22 +35,13 @@
     
 	
 	
-	$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
-	$objPHPExcel->getActiveSheet()->setCellValue('A6', 'ID');
-	$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
-	$objPHPExcel->getActiveSheet()->setCellValue('B6', 'NOMBRE');
-	$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(10);
-	$objPHPExcel->getActiveSheet()->setCellValue('C6', 'PRECIO');
-	$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
-	$objPHPExcel->getActiveSheet()->setCellValue('D6', 'EXISTENCIA');
-	$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(10);
-	$objPHPExcel->getActiveSheet()->setCellValue('E6', 'TOTAL');
 
-    $mysqli = getConn();
+
+  
   $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
   $query = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2' group by fecha";
   $sql = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2'";
-  $result = $mysqli->query($query);
+  $result = $pdo->query($query);
   //$result2 = $mysqli->query($query2);
     
     
@@ -129,15 +118,10 @@
 		$filasa++; //Sumamos 1 para pasar a la siguiente fila
 	}
 	
-	$filasa = $filasa -1;
-	
-	$objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "A7:E".$fila);
-	
-	$filaGrafica = $fila+2;
-	
-	// definir origen de los valores
-	$values = new PHPExcel_Chart_DataSeriesValues('Number', 'Productos!$D$7:$D$'.$fila);
-	
-	// definir origen de los rotulos
-	$categories = new PHPExcel_Chart_DataSeriesValues('String', 'Productos!$B$7:$B$'.$fila);
+	header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+	header('Content-Disposition: attachment;filename="Reporte.xlsx"');
+	header('Cache-Control: max-age=0');
+  
+  $objWriter = new  PHPExcel_Writer_Excel12007($objPHPExcel);
+	$writer->save('php://output');
 ?>
