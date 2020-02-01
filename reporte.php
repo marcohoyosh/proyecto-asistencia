@@ -104,15 +104,15 @@
 		$objPHPExcel->getActiveSheet()->setCellValue('C'.$filasa, $fila['horingreso']);
 		$objPHPExcel->getActiveSheet()->setCellValue('D'.$filasa, $fila['horibi']);
         $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila['horibs']);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila['horisalida']);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila['maringreso']);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $MarcacionBreak);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $MarcacionBreakSalida);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila["marsalida"]);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila["tardanza"]);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila["temprano"]);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila["worktime"]);
-        $objPHPExcel->getActiveSheet()->setCellValue('E'.$filasa, $fila["tiempototal"]);
+        $objPHPExcel->getActiveSheet()->setCellValue('F'.$filasa, $fila['horisalida']);
+        $objPHPExcel->getActiveSheet()->setCellValue('G'.$filasa, $fila['maringreso']);
+        $objPHPExcel->getActiveSheet()->setCellValue('H'.$filasa, $MarcacionBreak);
+        $objPHPExcel->getActiveSheet()->setCellValue('I'.$filasa, $MarcacionBreakSalida);
+        $objPHPExcel->getActiveSheet()->setCellValue('J'.$filasa, $fila["marsalida"]);
+        $objPHPExcel->getActiveSheet()->setCellValue('K'.$filasa, $fila["tardanza"]);
+        $objPHPExcel->getActiveSheet()->setCellValue('L'.$filasa, $fila["temprano"]);
+        $objPHPExcel->getActiveSheet()->setCellValue('M'.$filasa, $fila["worktime"]);
+        $objPHPExcel->getActiveSheet()->setCellValue('N'.$filasa, $fila["tiempototal"]);
 
 		
 		$filasa++; //Sumamos 1 para pasar a la siguiente fila
@@ -122,6 +122,6 @@
 	header('Content-Disposition: attachment;filename="Reporte.xlsx"');
 	header('Cache-Control: max-age=0');
   
-  $objWriter = new  PHPExcel_Writer_Excel12007($objPHPExcel);
+  $objWriter = new  PHPExcel_Writer_Excel2007($objPHPExcel);
 	$writer->save('php://output');
 ?>
