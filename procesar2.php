@@ -38,44 +38,32 @@ function getDatos(){
     $MesI = intval($MesIx);
     $CodigoAño = 6;
     $CodigoMes = null;
-    switch ($MesI) {
-      case 0:
-          $CodigoMes = 0;
-          break;
-      case 1:
-          $CodigoMes = 3;
-          break;
-      case 2:
-          $CodigoMes = 3;
-          break;
-      case 3:
-          $CodigoMes = 6;
-          break;
-      case 4:
-          $CodigoMes = 1;
-          break;
-      case 5:
-          $CodigoMes = 4;
-          break;
-      case 6 :
-          $CodigoMes = 6;
-          break;
-      case 7 :
-          $CodigoMes = 2;
-          break;
-      case 8 :
-          $CodigoMes = 5;
-          break;
-      case 9:
-          $CodigoMes = 0;
-          break;
-      case 10:
-          $CodigoMes = 3;
-          break;
-      case 11:
-          $CodigoMes = 5;
-          break;
-  }
+    if($MesI==1){
+      $CodigoMes =0;
+    } else if($MesI==2){
+      $CodigoMes =  3;
+    }else if ($MesI ==3){
+      $CodigoMes =3;
+    } else if($MesI == 4){
+      $CodigoMes = 6;
+    } else if($MesI ==5){
+      $CodigoMes = 1;
+    } else if($MesI ==6){
+      $CodigoMes = 4;
+    }else if($MesI ==7){
+      $CodigoMes = 6;
+    } else if($MesI ==8){
+      $CodigoMes = 2;
+    } else if($MesI ==9){
+      $CodigoMes = 5;
+    } else if($MesI ==10){
+      $CodigoMes = 0;
+    } else if($MesI ==11){
+      $CodigoMes = 3;
+    } else if($MesI ==12){
+      $CodigoMes = 5;
+    }
+  
   $DiaDeSemana = $DiaI + $CodigoMes + $AñoI + ($AñoI/4) + $CodigoAño;
   $DiaDeSemana = $DiaDeSemana%7;
   $HoraEntrada = null;
