@@ -1,6 +1,4 @@
-<?php    
-
-    $id = $_POST["nieto"];
+<?php$id = $_POST["nieto"];
     $fe1 = $_POST["fecha1"];
     $fe2 = $_POST["fecha2"];
 
@@ -13,7 +11,8 @@
 	//Propiedades de Documento
 	$objPHPExcel->getProperties()->setCreator("Insite Soluciones")->setDescription("Reporte de Asistencia");
 	
-	//Establecemos la pestaña activa y nombre a la pestaña
+  //Establecemos la pestaña activa y nombre a la pestaña
+  $objPHPExcel->setActiveSheetIndex(0)->mergeCells('A1:N1');
 	$objPHPExcel->setActiveSheetIndex(0);
 	$objPHPExcel->getActiveSheet()->setTitle("Reporte");
 	
@@ -48,6 +47,7 @@
   $listas ="";
   $breaki = 0;
   $breaki2 = 0;
+  $filasa= 2;
   while($fila=mysqli_fetch_assoc($result)) { 
     $Megafecha = $fila["fecha"];
     $MarcacionBreak = null;
@@ -119,9 +119,12 @@
 	}
 	
 	header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-	header('Content-Disposition: attachment;filename="Reporte.xlsx"');
+	header('Content-Disposition: attachment;filename="ReporteFinal.xlsx"');
 	header('Cache-Control: max-age=0');
   
-  $objWriter = new  PHPExcel_Writer_Excel2007($objPHPExcel);
-	$writer->save('php://output');
+  $objwriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
+	
+	
+	$objwriter->save('php://output');
+
 ?>
