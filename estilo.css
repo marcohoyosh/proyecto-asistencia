@@ -1,5 +1,10 @@
 body{
-	background-color:#41434e;
+	
+	background-image: url(imagenes/corpmendoza_fondo.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	
 }
 
 .logo{
@@ -12,35 +17,29 @@ body{
 }
 
 table {
-	background-color: white;
+	background-color: transparent;
 	text-align: left;
 	border-collapse: collapse;
 	width: 100%;
 	padding-right: 20px;
 	padding-left: 20px;;
+	
 }
 
 th, td{
-    border: solid 1px black;
-    padding: 20px;
-    text-align: center;
+    border-bottom: solid 1px gray;
+    padding: 10px;
+	text-align: center;
+	color: white;
 }
 
 thead{
-	background-color: #a5d4dd;
-	color: black;
-}
-
-tr:nth-child(even){
-	background-color:#9bd1db;
+	background-color: rgb(255, 255, 255, 0.1);
+	color: white;
 }
 
 .boton{
     background-color:#a5d4dd;
     padding: 10px;
     font-weight: bold;
-}
-.juan{
-	background-color: red;
-	padding: 50px;
 }
