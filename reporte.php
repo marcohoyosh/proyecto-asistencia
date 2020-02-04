@@ -38,17 +38,20 @@
 
   
   $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
-  $query = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2' group by fecha";
-  $sql = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2'";
-  $result = $pdo->query($query);
+  $sql2 = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fe1' and '$fe2' group by fecha";
+  $sql = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fe1' and '$fe2'";
+  //$result = $pdo->query($query);
+  //$result2 = $pdo->query($sql2);
+  //por las huevas
   //$result2 = $mysqli->query($query2);
     
     
   $listas ="";
   $breaki = 0;
   $breaki2 = 0;
-  $filasa= 2;
-  while($fila=mysqli_fetch_assoc($result)) { 
+  $filasa = 2;
+  
+  foreach($pdo->query($sql2) as $fila) {
     $Megafecha = $fila["fecha"];
     $MarcacionBreak = null;
     $MarcacionBreakSalida = null;
@@ -122,9 +125,6 @@
 	header('Content-Disposition: attachment;filename="ReporteFinal.xlsx"');
 	header('Cache-Control: max-age=0');
   
-  $objwriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-	
-	
-	$objwriter->save('php://output');
-
+  $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	$writer->save('php://output');
 ?>
