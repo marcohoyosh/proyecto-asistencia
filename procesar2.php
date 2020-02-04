@@ -16,12 +16,13 @@ function getDatos(){
     
     
   $listas ="";
-  $breaki = 0;
-  $breaki2 = 0;
-  $entrada = 0;
-  $salida = 0;
+  
   $subfecha = null; 
   foreach($pdo->query($sql2) as $fila) {
+    $breaki = 0;
+    $breaki2 = 0;
+    $entrada = 0;
+    $salida = 0;
     $Megafecha = $fila["mfecha"];
     $MarcacionDeIngreso = null;
     $MarcacionDeSalida = null;
@@ -30,6 +31,8 @@ function getDatos(){
     $subfechita = $fila["marcacion"];
     //$subfecha = strtotime($subfechita);
     //hacer esta parte con substring, ya que php no detecta funcion date()
+    $AñoMax = substr($subfechita, 0, 4);
+    $AñoMaxf = intval($AñoMax);
     $AñoIx = substr($subfechita, 2, 2);
     $AñoI = intval($AñoIx);
     $DiaIx = substr($subfechita, 8, 2);
@@ -39,10 +42,19 @@ function getDatos(){
     $CodigoAño = 6;
     $CodigoMes = null;
     if($MesI==1){
-      $CodigoMes =0;
+      if($AñoMaxf%4==0){
+        $CodigoMes= 6;
+      }else{
+        $CodigoMes = 0;
+      }
+      
     } else if($MesI==2){
-      $CodigoMes =  3;
-    }else if ($MesI ==3){
+      if($AñoMaxf%4==0){
+        $CodigoMes= 2;
+      }else{
+        $CodigoMes = 3;
+      }
+    } else if ($MesI ==3){
       $CodigoMes =3;
     } else if($MesI == 4){
       $CodigoMes = 6;
@@ -50,7 +62,7 @@ function getDatos(){
       $CodigoMes = 1;
     } else if($MesI ==6){
       $CodigoMes = 4;
-    }else if($MesI ==7){
+    } else if($MesI ==7){
       $CodigoMes = 6;
     } else if($MesI ==8){
       $CodigoMes = 2;
@@ -68,38 +80,14 @@ function getDatos(){
   $DiaDeSemana = $DiaDeSemana%7;
   $HoraEntrada = null;
   $HoraSalida = null; 
+  $estado2 =false;
+  $estado = false;
+  $contador=0;
   $sql = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where marcaciones.id = '$id' and marcaciones.mfecha BETWEEN '$fecha1' and '$fecha2' and fusion.diasemana = '$DiaDeSemana'";
     foreach($pdo->query($sql) as $fila2) {
       
       if($Megafecha == $fila2["mfecha"]){
         
-          $fechita1 = substr($fila2["tiempo"], 0,2);
-          $numfecha1 = intval($fechita1);
-          //$fechita2 = substr($fila2["horibi"], 0,2);
-          $numfecha2 = 13;
-          //$fechita3 = substr($fila2["horibs"], 0,2);
-          $numfecha3 = 15;
-
-          if($breaki < 0) {
-            $breaki = $breaki * (-1);
-          }
-          if($breaki2 < 0) {
-            $breaki2 = $breaki2 * (-1);
-          }
-          $estado = false;
-          if($numfecha1-$numfecha2 < $breaki){
-            $breaki = ($numfecha1-$numfecha2);
-            $MarcacionBreak = $fila2["tiempo"];
-            
-
-          } else if ($numfecha1-$numfecha2 == 0 && !$estado){
-            $MarcacionBreak = $fila2["tiempo"];
-            $estado = true; 
-          }
-          if($numfecha1-$numfecha3 <= $breaki2){
-            $breaki2 = ($numfecha1-$numfecha3);
-            $MarcacionBreakSalida = $fila2["tiempo"];
-          }
           
           
           //Ahora calculamos marcaciones de Ingreso y salida
@@ -115,45 +103,82 @@ function getDatos(){
             $salida = $salida * (-1);
           }
           
-          if($NumMarcacion-$NumMarcacion2 < $entrada){
+          if($NumMarcacion-$NumMarcacion2 <= $entrada){
             $entrada = ($NumMarcacion-$NumMarcacion2);
             $MarcacionDeIngreso = $fila2["tiempo"];
+          } else if ($NumMarcacion-$NumMarcacion2 > $entrada && !$estado2 && $contador ==0){
+            $MarcacionDeIngreso = $fila2["tiempo"];
             
+            $estado2 = true; 
+          }
+          $contador++;
           if($NumMarcacion-$NumMarcacion3 < $salida){
             $salida = ($NumMarcacion-$NumMarcacion3);
             $MarcacionDeSalida = $fila2["tiempo"];
           } 
 
+          //Calculamos los breaks:
 
+
+          $fechita1 = substr($fila2["tiempo"], 0,2);
+          $numfecha1 = intval($fechita1);
+          //$fechita2 = substr($fila2["horibi"], 0,2);
+          $numfecha2 = 13;
+          //$fechita3 = substr($fila2["horibs"], 0,2);
+          $numfecha3 = 15;
+
+          if($breaki < 0) {
+            $breaki = $breaki * (-1);
+          }
+          if($breaki2 < 0) {
+            $breaki2 = $breaki2 * (-1);
+          }
+          
+          if($numfecha1-$numfecha2 < $breaki){
+            $breaki = ($numfecha1-$numfecha2);
+            $MarcacionBreak = $fila2["tiempo"];
+            
+
+          } else if ($numfecha1-$numfecha2 == 0 && !$estado){
+            $MarcacionBreak = $fila2["tiempo"];
+            $breaki = ($numfecha1-$numfecha2);
+            $estado = true; 
+          }
+          if($numfecha1-$numfecha3 <= $breaki2){
+            $breaki2 = ($numfecha1-$numfecha3);
+            $MarcacionBreakSalida = $fila2["tiempo"];
+          }
+          
+          //fiajmos tiempos
           $HoraEntrada = $fila2["entrada"];
           $HoraSalida = $fila2["salida"];
-
-        }
+        
+        
         
     }
     /// aqui se fijan los valores del incio y fin del break (fijos)
     $InicioFijoBreak = "13:00:00";
     $FinFijoBreak = "15:00:00";
       
-    if($MarcacionBreak == $MarcacionDeIngreso || $MarcacionBreak == $MarcacionDeSalida ) {
-      $MarcacionBreak = "No marcó inicio de Break";
-    }
-    if($MarcacionBreakSalida == $MarcacionDeIngreso || $MarcacionBreakSalida == $MarcacionDeSalida ) {
-      $MarcacionBreakSalida = "No marcó fin de Break";
-    }
-
-    if ($MarcacionBreak == null){     
-      $empleado = $fila['nieto'];
-      $to = "rodrigo.mozo.01@gmail.com";
-      $subject = "Incorcondancia con el horario";
-      $message = "Probable exceso de tardanza o aunsencia en dia laboral, datos del empleado: \nNombre:" .$empleado. 
-      "\nDia en el que se encuentra la incidencia :" .$fila['fecha'];
- 
-      mail($to, $subject, $message);
-    }
-
-}
     
+}
+if($MarcacionBreak == $MarcacionDeIngreso || $MarcacionBreak == $MarcacionDeSalida ) {
+  $MarcacionBreak = "No marcó inicio de Break";
+}
+if($MarcacionBreakSalida == $MarcacionDeIngreso || $MarcacionBreakSalida == $MarcacionDeSalida ) {
+  $MarcacionBreakSalida = "No marcó fin de Break";
+}
+
+if ($MarcacionBreak == null){     
+  $empleado = $fila['nieto'];
+  $to = "rodrigo.mozo.01@gmail.com";
+  $subject = "Incorcondancia con el horario";
+  $message = "Probable exceso de tardanza o aunsencia en dia laboral, datos del empleado: \nNombre:" .$empleado. 
+  "\nDia en el que se encuentra la incidencia :" .$fila['mfecha'];
+
+  mail($to, $subject, $message);
+}
+
     
     
 
@@ -170,9 +195,9 @@ function getDatos(){
         <td> ".$MarcacionBreak." </td>
         <td> ".$MarcacionBreakSalida." </td>
         <td> ".$MarcacionDeSalida." </td>
-        <td> ".$MarcacionDeSalida." </td>
-        <td> ".$MarcacionDeSalida." </td>
-        <td> ".$MarcacionDeSalida." </td>
+        <td> ".$NumMarcacion3." </td>
+        <td> ".$NumMarcacion2." </td>
+        <td> ".$NumMarcacion." </td>
         <td> ".$AñoI." </td>
         
         
