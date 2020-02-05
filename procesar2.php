@@ -170,9 +170,9 @@ function getDatos(){
         <td> ".$MarcacionBreak." </td>
         <td> ".$MarcacionBreakSalida." </td>
         <td> ".$MarcacionDeSalida." </td>
-        <td> ".$MarcacionDeSalida." </td>
-        <td> ".$MarcacionDeSalida." </td>
-        <td> ".$MarcacionDeSalida." </td>
+        <td> ".$MesI." </td>
+        <td> ".$DiaI." </td>
+        <td> ".$DiaDeSemana." </td>
         <td> ".$AñoI." </td>
         
         

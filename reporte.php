@@ -125,6 +125,6 @@
 	header('Content-Disposition: attachment;filename="ReporteFinal.xlsx"');
 	header('Cache-Control: max-age=0');
   
-  $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+  $writer = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 	$writer->save('php://output');
 ?>
