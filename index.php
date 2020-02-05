@@ -92,7 +92,7 @@
 				<table>
 				<thead>
 									<tr>
-									<th>Nombre</th><th>fecha</th><th>Horario de Entrada</th><th>Inicio de Break</th><th>Salida de Break</th><th>Horario de salida</th><th>Marcacion de ingreso</th><th>Marcacion de inicio de break</th><th>Marcacion de fin de break</th><th>Marcacion de salida</th><th>tardanza</th><th>temprano</th><th>worktime</th><th>Tiempo total</th>
+									<th>Nombre</th><th>Fecha</th><th>Horario Entrada</th><th>Inicio Refrigerio</th><th>Salida Refrigerio</th><th>Horario Salida</th><th>Marcacion Ingreso</th><th>Marcacion de inicio Refrigerio</th><th>Marcacion de fin Refrigerio</th><th>Marcacion Salida</th><th>Tardanza</th><th>Salida temprana</th><th>Worktime</th><th>Tiempo total</th>
 									
 									</tr>
 								</thead>
