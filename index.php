@@ -1,4 +1,10 @@
-<?php session_start();
+<?php 
+session_start();
+
+if(!isset($_SESSION["id"])){
+	header("Location: index.php");
+	exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +40,8 @@
 	</header>
 <body>
 		<h1>Control de Asistencia</h1>
-
+		
+		
 		<fieldset>
 
 		 <form action="reporte.php" method="POST">

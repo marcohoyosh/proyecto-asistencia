@@ -1,5 +1,6 @@
 <?php
   require_once 'conexion.php';
+  date_default_timezone_set('America/Lima');
 
 function getDatos(){
     $id = $_POST["idnieto"];
@@ -178,10 +179,52 @@ if ($MarcacionBreak == null){
 
   mail($to, $subject, $message);
 }
+      $MarcI = strtotime($MarcacionDeIngreso);
+      $HI = strtotime($HoraEntrada);
+        
+      if($MarcI > $HI){
+        date_default_timezone_set('America/Lima');
+        $date1 = new DateTime($HoraEntrada);
+        $date2 = new DateTime($MarcacionDeIngreso);
+        $diff = $date1->diff($date2);
+        // will output 2 days
+        $Tardanza = $diff->format('%H horas %i minutos').PHP_EOL; 
+        $work1= $MarcacionDeIngreso;
+      }else{
+        $Tardanza = "00:00:00";
+        $work1 = $HoraEntrada;
+      }
+     
+      $MarcS = strtotime($MarcacionDeSalida);
+      $HS = strtotime($HoraSalida);
+        
+      if($HoraSalida > $MarcacionDeSalida){
+        date_default_timezone_set('America/Lima');
+        $date1 = new DateTime($HoraSalida);
+        $date2 = new DateTime($MarcacionDeSalida);
+        $diff = $date1->diff($date2);
+        // will output 2 days
+        $Temprano = $diff->format('%H horas %i minutos').PHP_EOL; 
+        $work2 = $MarcacionDeSalida;
+      } else {
+        $Temprano = "00:00:00";
+        $work2 = $HoraSalida;
+      }
 
-    
-    
+        date_default_timezone_set('America/Lima');
+        $date1 = new DateTime($MarcacionDeIngreso);
+        $date2 = new DateTime($MarcacionDeSalida);
+        $diff = $date1->diff($date2);
+        // will output 2 days
+        $TiempoTotal = $diff->format('%H horas %i minutos').PHP_EOL; 
 
+
+        date_default_timezone_set('America/Lima');
+        $date1 = new DateTime($work1);
+        $date2 = new DateTime($work2);
+        $diff = $date1->diff($date2);
+        // will output 2 days
+        $Worktime = $diff->format('%H horas %i minutos').PHP_EOL; 
 
         $listas .= " <tr>
                                             
@@ -195,10 +238,10 @@ if ($MarcacionBreak == null){
         <td> ".$MarcacionBreak." </td>
         <td> ".$MarcacionBreakSalida." </td>
         <td> ".$MarcacionDeSalida." </td>
-        <td> ".$NumMarcacion3." </td>
-        <td> ".$NumMarcacion2." </td>
-        <td> ".$NumMarcacion." </td>
-        <td> ".$AñoI." </td>
+        <td> ".$Tardanza." </td>
+        <td> ".$Temprano." </td>
+        <td> ".$Worktime." </td>
+        <td> ".$TiempoTotal." </td>
         
         
    
