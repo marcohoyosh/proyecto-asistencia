@@ -31,7 +31,7 @@ if(!isset($_SESSION["id"])){
         <div class='contenedor contenido-header' id="myHeader">
             <div class="barra">   
                 <a href=" index.php"><img src="imagenes/cmlogo.png" alt="Logo" height="85px" class="logo"></a>
-                <h3>Bienvenido <?php echo $_SESSION["nombres"] ?> <a href="cerrar_cesion.php">Cerrar Sesion</a></h3>
+                <h1>Bienvenido <?php echo $_SESSION["nombres"] ?> <a href="cerrar_cesion.php">Cerrar Sesion</a></h1>
                 <nav class="navegacion">                                   
                                    
                 </nav>   
@@ -77,17 +77,13 @@ if(!isset($_SESSION["id"])){
 							
 						<div class="row">
 							
-							<div class="col-md-4">
+							<div class="container">
 								
-								<button type="submit" id="enviar" type="submit" class="boton1" value ="enviar" name ="enviar">Enviar</button> 
-								<button type="submit" id="reporte" type="submit" class="boton2" value ="reporte" name ="reporte">Reporte</button> 
+								<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Enviar</button> 
+								<button type="submit" id="reporte" type="submit" class="btn"  value ="reporte" name ="reporte">Reporte</button> 
 						
 							</div>
-							<div class="row">
-								<div class="col-md-4">
-									<p><b>El resultado es: </b></p><p id="resultado1"></p>
-								</div>
-							</div>
+							
 						</div>							
 					
 				</div>

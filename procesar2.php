@@ -191,7 +191,7 @@ if ($MarcacionBreak == null){
         $Tardanza = $diff->format('%H horas %i minutos').PHP_EOL; 
         $work1= $MarcacionDeIngreso;
       }else{
-        $Tardanza = "00:00:00";
+        $Tardanza = '00 horas 00 minutos';
         $work1 = $HoraEntrada;
       }
      
@@ -207,7 +207,7 @@ if ($MarcacionBreak == null){
         $Temprano = $diff->format('%H horas %i minutos').PHP_EOL; 
         $work2 = $MarcacionDeSalida;
       } else {
-        $Temprano = "00:00:00";
+        $Temprano = '00 horas 00 minutos';
         $work2 = $HoraSalida;
       }
 
