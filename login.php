@@ -52,37 +52,79 @@ session_start();
 <body >
     
     <div class="contenido">
-    <?php if(isset($_GET["m"])){ 
-        if($_GET["m"]=="p"){ ?>
-    <p style="color:red">El password es incorrecto</p>
-    <?php } if($_GET["m"]=="u"){ ?>
-    <p style="color:red">El nombre de usuario es incorrecto</p>
-    <?php }} ?>
-        <form action="procesar-login.php" method="post">
+            <form action="procesar-login.php" method="post">
         
-            <div class="Formulario">
-                <img src="imagenes/logo.png">
-                <h3 style=>Inicia sesión</h3>
-                    <div class="elemento">
-                    
-                    <p style="color:black">Nombre de usuario:</p>
-                    <input type="text" name="u" id="" placeholder="Nombre de usuario" autofocus required>
-                    </div>
-                    <div class="elemento">
-                    <p style="color:black">Contraseña:</p>
-                    <input type="password" name="p" id="" placeholder="Contraseña" required>
-                    </div>
-                    <div class="elemento iniciada">
-                    <input type="checkbox" name="s" value="1">
-                    <label for="s">Mantener sesión iniciada</label>                    
-                    </div>
-                    <button type="submit" class="elemento">Entrar</button>
-                    
+            <div class="logom">
+                <img src="imagenes/cmlogo.png">
             </div>
-            <div>
+
+                <div class="iconos">
+
+
+                         <img src="imagenes/golden.png" class="lol"> 
+
+                    
+                        <img src="imagenes/lenacarbon.png" class="lol">  
+
+                    
+                        <img src="imagenes/retablo.png" class="lol">                
+                    
+                    
+                        <img src="imagenes/tinajas.png" class="lol">                 
+                    
+                    
+                        <img src="imagenes/cviche.png" class="lol">   
+                        
+                        
+                        <img src="imagenes/lenasazon.png" class="lol">
+                    
                 
-            </div>
+                </div>
                 
+            <div class="Formulario">                                          
+                        <img src="imagenes/logo.png">
+                    <div class="titulo">
+                        <span>Control de asistencia</span>
+                    </div>
+                        <div class="elemento">
+                        
+                                    <div class="name">
+                                    <!--<span>Nombre de usuario:</span>-->
+                                    </div>
+                                <input type="text" name="u" id="" placeholder="Nombre de usuario" autofocus required>
+                                </div>
+                                <?php if(isset($_GET["m"])){ 
+                                    if($_GET["m"]=="u"){ ?>
+                                    <div class="alerta">
+                                    <span>Usuario inválido</span>
+                                    </div>                                    
+                                    <?php }} ?>
+                                <div class="elemento">
+                                <div class="name">
+                                    <!--<span>Contraseña:</span>-->
+                                    </div>
+                                <input type="password" name="p" id="" placeholder="Contraseña" required>
+                                </div>
+                                <?php if(isset($_GET["m"])){
+                                if($_GET["m"]=="p"){ ?>
+                                    <div class="alerta">
+                                    <span>Contraseña incorrecta</span>
+                                    </div>
+                                    <?php }} ?>
+                                <div class="elemento iniciada">
+                                <input type="checkbox" name="s" value="1">
+                                <label for="s">Mantener sesión iniciada</label>                    
+                                </div>
+                                <button type="submit" class="elemento">Entrar</button>
+                                
+                                
+                        
+                        </div>
+                                
+                    
+                </div>
+                
+             
 
         </form>
     </div>
