@@ -10,13 +10,14 @@ body{
 
 .contenido{
         
-    max-width: 100%;
+    max-width: 1500px;
     height: 100%;
     background-position: center;
     background-size: 200px;
     padding-top: 20px;
     padding-bottom: 70px;
     padding-right: 20px;
+    margin: auto;
     
          
 }
@@ -40,6 +41,7 @@ body{
     width: 500px;  
     border-radius: 30px;
     margin-right: 0px;
+    min-height: 500px;
     
     
 }

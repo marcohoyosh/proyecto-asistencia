@@ -3,7 +3,8 @@ body{
 	background-image: url(imagenes/corpmendoza_fondo.jpg);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
+	background-size: cover;	
+	
 	
 }
 
@@ -20,7 +21,8 @@ table {
 	background-color: transparent;
 	text-align: left;
 	border-collapse: collapse;
-	width: 100%;
+	width: 95%;
+	margin: auto;
 	padding-right: 20px;
 	padding-left: 20px;;
 	
@@ -111,4 +113,12 @@ input[type="date"], focus {
     box-shadow: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
+}
+
+.contenedor.contenido-header{
+	background-color: aeamongol;
+}
+
+.titulo{
+	padding-top: 50px;
 }
