@@ -193,6 +193,7 @@ if ($MarcacionBreak == null){
       }else{
         $Tardanza = '00 horas 00 minutos';
         $work1 = $HoraEntrada;
+        
       }
 
       //YY "/" mm "/" dd
@@ -213,11 +214,7 @@ if ($MarcacionBreak == null){
         $work2 = $HoraSalida;
       }
 
-      date_default_timezone_set('America/Lima');
-        $date1 = new DateTime($MarcacionBreak);
-        $date2 = new DateTime($MarcacionBreakSalida);
-        $diff = $date1->diff($date2);
-        $RestaBreak = $diff->format('%H horas %i minutos').PHP_EOL;
+      
         
         
 
@@ -225,12 +222,9 @@ if ($MarcacionBreak == null){
         $date1 = new DateTime($MarcacionDeIngreso);
         $date2 = new DateTime($MarcacionDeSalida);
         $diff = $date1->diff($date2);
-        $fec = new DateTime("00:00:00");
-        $final = $fec->add(new DateInterval($diff));
-        $inicio = $fec->add($RestaBreak); 
-        //$diff = round((($final-$inicio)/60/60),2);
-        $diff = $inicio->diff($final);
-        $TiempoTotalf = $diff->format('%H'); 
+        $diff->modify('-2 hours');
+       
+        $TiempoTotalf = $diff->format('%H horas %i minutos'); 
         
 
 
@@ -259,7 +253,7 @@ if ($MarcacionBreak == null){
         <td> ".$Temprano." </td>
         <td> ".$Worktime." </td>
         <td> ".$TiempoTotalf." </td>
-        <td> ".$RestaBreak." </td>
+        
         
         
    

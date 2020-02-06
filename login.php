@@ -55,7 +55,7 @@ session_start();
             <form action="procesar-login.php" method="post">
         
             <div class="logom">
-                <img src="imagenes/cmlogo.png">
+                <img src="imagenes/cm2.png">
             </div>
 
                 <div class="iconos">

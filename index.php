@@ -39,7 +39,7 @@ if(!isset($_SESSION["id"])){
 					<p> ¡ Bienvenido <?php echo $_SESSION["nombres"] ?> !  <a href="cerrar_cesion.php">Cerrar Sesion</a></p>
 				</div>
                 <nav class="navegacion">                                   
-				Waaaaaaaaaaaaaaaaaaaaaa              
+				             
                 </nav>   
             </div>         
         </div>
