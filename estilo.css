@@ -4,12 +4,14 @@ body{
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;	
+	color: whitesmoke;
 	
 	
 }
 
 .logo{
-	height: 85px;
+	height: 75px;
+	
 }
 
 #main-container{
@@ -46,6 +48,9 @@ thead{
     font-weight: bold;
 }
 
+.container{
+	text-align: center;
+}
 .btn{
 	color: #0099CC;
 	background: transparent;
@@ -57,6 +62,7 @@ thead{
 	text-align: center;
 	display: inline-block;
 	font-size: 14px;
+	
 	
 	margin: 50px 4px;
 	-webkit-transition-duration: 0.4s; /* Safari */
@@ -116,9 +122,33 @@ input[type="date"], focus {
 }
 
 .contenedor.contenido-header{
-	background-color: aeamongol;
+	background-color: rgb(0, 0, 255,0.1);
+	height: 95px;
+	
+	
 }
 
 .titulo{
 	padding-top: 50px;
+	text-align: center;
+}
+
+.logoo{
+	
+	float: right;
+	padding-right: 50px;
+	padding-top: 33px;
+	font-size: 1.5rem;
+	
+}
+
+.barra{
+	background-color: transparent;
+	
+}
+
+.log{
+	float: left;	
+	padding-left: 40px;
+	padding-top: 10px;
 }

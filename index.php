@@ -19,7 +19,7 @@ if(!isset($_SESSION["id"])){
 </head>
 <style>
 	* {margin: 0;padding: 0;font-family:sans-serif;border:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
-	body {padding:0px;text-align:center;}
+	body {padding:0px;text-align:;}
 	fieldset p {width:33.3%;float:left;text-align:center;padding:50px}
 	select{padding:10px;border:1px solid #bbb;border-radius:5px;margin:5px 0;display:block;box-shadow:0 0 10px #ddd;width:100%}
 	input {padding:10px 50px;margin:0 auto;}
@@ -27,20 +27,24 @@ if(!isset($_SESSION["id"])){
 </style>
 
 
-    <header class="site-header inicio">    
+    
+<body>
+<header class="site-header inicio">    
         <div class='contenedor contenido-header' id="myHeader">
-            <div class="barra">   
-				<a href=" index.php"><img src="imagenes/cmlogo.png" alt="Logo" height="85px" class="logo"></a>
+            <div class="barra">
+				<div class="log">   
+					<img src="imagenes/cmlogo.png" alt="Logo" height="85px" class="logo">
+				</div>
 				<div class="logoo">
-					<h1>Bienvenido <?php echo $_SESSION["nombres"] ?> <a href="cerrar_cesion.php">Cerrar Sesion</a></h1>
+					<p> ¡ Bienvenido <?php echo $_SESSION["nombres"] ?> !  <a href="cerrar_cesion.php">Cerrar Sesion</a></p>
 				</div>
                 <nav class="navegacion">                                   
-                                   
+				Waaaaaaaaaaaaaaaaaaaaaa              
                 </nav>   
             </div>         
         </div>
 	</header>
-<body>
+
 		<div class="titulo">
 			<h1>Control de Asistencia</h1>
 		</div>
