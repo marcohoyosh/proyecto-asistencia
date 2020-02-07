@@ -7,6 +7,7 @@ body{
 	color: whitesmoke;
 	
 	
+	
 }
 
 .logo{
@@ -103,7 +104,7 @@ input[type="date"] {
     -webkit-appearance: none;
     color: #95a5a6;
 	font-family: "Helvetica", arial, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     border:1px solid #ecf0f1;
     background:#ecf0f1;
     padding:5px;
@@ -131,6 +132,9 @@ input[type="date"], focus {
 .titulo{
 	padding-top: 50px;
 	text-align: center;
+	font-size: 1.5rem;
+	
+	
 }
 
 .logoo{
@@ -151,4 +155,13 @@ input[type="date"], focus {
 	float: left;	
 	padding-left: 40px;
 	padding-top: 10px;
+}
+
+p{
+    font-size: 1.5rem;
+}
+
+.achicar{
+	width: 80%;
+	padding-left: 25%;
 }

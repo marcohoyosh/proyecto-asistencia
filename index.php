@@ -44,60 +44,60 @@ if(!isset($_SESSION["id"])){
             </div>         
         </div>
 	</header>
-
-		<div class="titulo">
-			<h1>Control de Asistencia</h1>
-		</div>
-		
-		<fieldset>
-
-		 <form action="reporte.php" method="POST">
-			
-				<div class="container">
-						<div class="page-header text-left">
-						</div>
-						
-						<div class="col-md-4">
-							<p>Local
-							<select id="lista_reproduccion" name="lista_reproduccion" class="form-control">
-							</select>
-							</p>
-						</div>
-						<div class="col-md-4">
-							<p>Departamento
-							<select id="videos" name="video" class="form-control">
-							</select>
-						</p>
-						</div>
-						<div class="col-md-4">
-							<p>Empleados
-							<select id="nietos" name="nieto" class="form-control">
-							</select>
-							</p>
-						</div>
-						
-								<input type="date" id="fecha1" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" >
-
-							
-								<input type="date" id="fecha2" name="fecha2" step="1" min="2013-01-01" max="2020-12-31" >
-
-							
-						<div class="row">
-							
-							<div class="container">
-								
-								<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Enviar</button> 
-								<button type="submit" id="reporte" type="submit" class="btn"  value ="reporte" name ="reporte">Reporte</button> 
-						
-							</div>
-							
-						</div>							
-					
+		<div class="achicar">
+				<div class="titulo">
+					<h1>Control de Asistencia</h1>
 				</div>
-			</form>
-		</fieldset>
-
 				
+				<fieldset>
+
+				<form action="reporte.php" method="POST">
+					
+						<div class="container">
+								<div class="page-header text-left">
+								</div>
+								
+								<div class="col-md-4">
+									<p>Local
+									<select id="lista_reproduccion" name="lista_reproduccion" class="form-control">
+									</select>
+									</p>
+								</div>
+								<div class="col-md-4">
+									<p>Departamento
+									<select id="videos" name="video" class="form-control">
+									</select>
+								</p>
+								</div>
+								<div class="col-md-4">
+									<p>Empleados
+									<select id="nietos" name="nieto" class="form-control">
+									</select>
+									</p>
+								</div>
+								
+										<input type="date" id="fecha1" name="fecha1" step="1" min="2013-01-01" max="2020-12-31" >
+
+									
+										<input type="date" id="fecha2" name="fecha2" step="1" min="2013-01-01" max="2020-12-31" >
+
+									
+								<div class="row">
+									
+									<div class="container">
+										
+										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Enviar</button> 
+										<button type="submit" id="reporte" type="submit" class="btn"  value ="reporte" name ="reporte">Reporte</button> 
+								
+									</div>
+									
+								</div>							
+							
+						</div>
+					</form>
+				</fieldset>
+
+		</div>	
 			<input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
 				<table>
 				<thead>
