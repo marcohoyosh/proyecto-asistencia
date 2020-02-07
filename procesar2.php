@@ -215,17 +215,27 @@ if ($MarcacionBreak == null){
       }
 
       
-        
-        
+        //date_default_timezone_set('America/Lima');
+        //$totalSegundos = ($MarcacionBreak->getTimestamp() - $MarcacionBreakSalida->getTimestamp());
+          
 
         date_default_timezone_set('America/Lima');
         $date1 = new DateTime($MarcacionDeIngreso);
         $date2 = new DateTime($MarcacionDeSalida);
         $diff = $date1->diff($date2);
-        $diff->modify('-2 hours');
+        
        
         $TiempoTotalf = $diff->format('%H horas %i minutos'); 
+        $Tiempousar = $diff->format('%H:%i:%s'); 
+        date_default_timezone_set('America/Lima');
+        $date1 = new DateTime($MarcacionBreak);
+        $date2 = new DateTime($MarcacionBreakSalida);
+        $diff = $date1->diff($date2);
+        $TiempoBreak = $diff->format('%H horas %i minutos');
+        $date3 = date_create($Tiempousar);
         
+        $date3->add($TiempoBreak); 
+        $date3->format('Y-m-d H:i:s');
 
 
         date_default_timezone_set('America/Lima');
@@ -252,7 +262,7 @@ if ($MarcacionBreak == null){
         <td> ".$Tardanza." </td>
         <td> ".$Temprano." </td>
         <td> ".$Worktime." </td>
-        <td> ".$TiempoTotalf." </td>
+        <td> ".$date3." </td>
         
         
         
