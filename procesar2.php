@@ -222,7 +222,7 @@ if ($MarcacionBreak == null){
         $date1 = new DateTime($MarcacionDeIngreso);
         $date2 = new DateTime($MarcacionDeSalida);
         $diff = $date1->diff($date2);
-        $diff->modify('-2 hours');
+        
        
         $TiempoTotalf = $diff->format('%H horas %i minutos'); 
         
