@@ -10,7 +10,7 @@ session_start();
             $id=$_COOKIE["id"];
             
             #crear pdo
-            $pdo=new PDO("mysql:host=localhost;dbname=asistencia;charset=utf8","root","");
+            $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
         
             #construir comando
             $sql="SELECT * 
