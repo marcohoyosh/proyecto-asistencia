@@ -17,7 +17,7 @@ function getDatos(){
     
     
   $listas ="";
-  
+  $sumatotal = "00:00:00";
   $subfecha = null; 
   foreach($pdo->query($sql2) as $fila) {
     $breaki = 0;
@@ -224,29 +224,55 @@ if ($MarcacionBreak == null){
         $date2 = new DateTime($MarcacionDeSalida);
         $diff = $date1->diff($date2);
         
+        
+        //$tiempo2 = date("i:s:00", "$Tiemposalidasa");
        
         $TiempoTotalf = $diff->format('%H horas %i minutos'); 
-        $Tiempousar = $diff->format('%H:%i:%s'); 
+        $date1 = strtotime($MarcacionDeIngreso);
+        $date2 = strtotime($MarcacionDeSalida);
+        $Tiemposalidasa = round((($date2-$date1)/60),2);
+        $tiemposote = date("i:s:00", "$Tiemposalidasa");
+        $tiemposote = strtotime($tiemposote);
+        //$Tiempousar = $diff->format('%H:%i:%s'); 
         date_default_timezone_set('America/Lima');
-        $date1 = new DateTime($MarcacionBreak);
-        $date2 = new DateTime($MarcacionBreakSalida);
-        $diff = $date1->diff($date2);
-        $TiempoBreak = $diff->format('%H horas %i minutos');
-        $date3 = date_create($Tiempousar);
+        $date1 = strtotime($MarcacionBreak);
+        $date2 = strtotime($MarcacionBreakSalida);
+        //$diff = $date1->diff($date2);
+        $TiempoBreak = round((($date2-$date1)/60),2);
+        $tiempito = date("i:s:00", "$TiempoBreak");
+        $tiempito = strtotime($tiempito);
+        $superfinal = round((($tiemposote-$tiempito)/60),2);
+        $superfinal = date("i:s:00", "$superfinal");
+
+
         
-        $date3->add($TiempoBreak); 
-        $date3->format('Y-m-d H:i:s');
+
+        //$cadena = (string)$TiempoBreak;
+        //$hora = DateTime::createFromFormat('Hi', $cadena);
+        //$hora->format('H:i:s');
+        //$date3 = date_create($Tiempousar);
+        //$date3->add($TiempoBreak); 
+        //$date3->format('Y-m-d H:i:s');
+
 
 
         date_default_timezone_set('America/Lima');
-        $date1 = new DateTime($work1);
-        $date2 = new DateTime($work2);
-        $diff = $date1->diff($date2);
+        $date1 = strtotime($work1);
+        $date2 = strtotime($work2);
+        //$diff = $date1->diff($date2);
         // will output 2 days
-        $Worktime = $diff->format('%H horas %i minutos').PHP_EOL; 
-
+        $Worktime = round((($date2-$date1)/60),2); 
+        $Worktime = date("i:s:00", "$Worktime");
+        $Worktime = strtotime($Worktime);
+        $workfinal = round((($Worktime-$tiempito)/60),2);
+        $workfinal = date("i:s:00", "$workfinal");
         
-
+        //desde aqui empieza para calcular la suma total (verificar bien)
+        $Megafinal = strtotime($superfinal);
+        //suma total esta inicializada afuera del foreach
+        $sumatotal = strtotime($sumatotal);
+        $sumatotal = round((($sumatotal+$Megafinal)/60),2);
+        $sumatotal = date("i:s:00", "$sumatotal");
         $listas .= " <tr>
                                             
         <td> ".$fila['nieto']." </td>
@@ -261,8 +287,9 @@ if ($MarcacionBreak == null){
         <td> ".$MarcacionDeSalida." </td>
         <td> ".$Tardanza." </td>
         <td> ".$Temprano." </td>
-        <td> ".$Worktime." </td>
-        <td> ".$date3." </td>
+        <td> ".$workfinal." </td>
+        <td> ".$superfinal." </td>
+        <td> ".$sumatotal." </td>
         
         
         
