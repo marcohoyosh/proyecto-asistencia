@@ -7,7 +7,7 @@ function getDatos(){
     $fecha1 = $_POST["fecha1"];
     $fecha2 = $_POST["fecha2"];
   $mysqli = getConn();
-  $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
+  $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
   $sql2 = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where marcaciones.id = '$id' and marcaciones.mfecha between '$fecha1' and '$fecha2' group by mfecha";
   
   //$query = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2' group by fecha";
@@ -119,14 +119,18 @@ function getDatos(){
           } 
 
           //Calculamos los breaks:
-
-
-          $fechita1 = substr($fila2["tiempo"], 0,2);
-          $numfecha1 = intval($fechita1);
+          $date1 = strtotime($fila2["tiempo"]);
+          $date2 = strtotime("13:00:00");
+          $date3 = strtotime("15:00:00");
+          $Tiempomegasasa = round((($date1-$date2)),2);
+          $Tiempomegasasa2 = round((($date1-$date3)),2);
+          //$tiemposote = date("h:i:s", "$Tiempocargosasa");
+          //$fechita1 = substr($fila2["tiempo"], 0,2);
+          //$numfecha1 = intval($fechita1);
           //$fechita2 = substr($fila2["horibi"], 0,2);
-          $numfecha2 = 13;
+          //$numfecha2 = 13;
           //$fechita3 = substr($fila2["horibs"], 0,2);
-          $numfecha3 = 15;
+          //$numfecha3 = 15;
 
           if($breaki < 0) {
             $breaki = $breaki * (-1);
@@ -135,18 +139,13 @@ function getDatos(){
             $breaki2 = $breaki2 * (-1);
           }
           
-          if($numfecha1-$numfecha2 < $breaki){
-            $breaki = ($numfecha1-$numfecha2);
+          if($Tiempomegasasa < $breaki){
+            $breaki = ($Tiempomegasasa);
             $MarcacionBreak = $fila2["tiempo"];
             
-
-          } else if ($numfecha1-$numfecha2 == 0 && !$estado){
-            $MarcacionBreak = $fila2["tiempo"];
-            $breaki = ($numfecha1-$numfecha2);
-            $estado = true; 
-          }
-          if($numfecha1-$numfecha3 <= $breaki2){
-            $breaki2 = ($numfecha1-$numfecha3);
+          } 
+          if($Tiempomegasasa2 <= $breaki2){
+            $breaki2 = ($Tiempomegasasa2);
             $MarcacionBreakSalida = $fila2["tiempo"];
           }
           
@@ -169,12 +168,21 @@ if($MarcacionBreak == $MarcacionDeIngreso || $MarcacionBreak == $MarcacionDeSali
 if($MarcacionBreakSalida == $MarcacionDeIngreso || $MarcacionBreakSalida == $MarcacionDeSalida ) {
   $MarcacionBreakSalida = "No marcó fin de Break";
 }
+if($MarcacionBreak == null ) {
+  $MarcacionBreak = "No marcó inicio de Break";
+}
+if($MarcacionBreakSalida == null ) {
+  $MarcacionBreakSalida = "No marcó fin de Break";
+}
 
-if ($MarcacionBreak == null){     
+$var1 = "No marcó inicio de Break";
+$var2 = "No marcó fin de Break";
+if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {    
   $empleado = $fila['nieto'];
   $to = "rodrigo.mozo.01@gmail.com";
-  $subject = "Incorcondancia con el horario";
-  $message = "Probable exceso de tardanza o aunsencia en dia laboral, datos del empleado: \nNombre:" .$empleado. 
+  $subject = "Incorcondancia-Horario";
+  $message = "Probable exceso de tardanza o aunsencia en dia laboral.
+    \n Datos del empleado: \nNombre:" .$empleado. 
   "\nDia en el que se encuentra la incidencia :" .$fila['mfecha'];
 
   mail($to, $subject, $message);
@@ -230,20 +238,63 @@ if ($MarcacionBreak == null){
         $TiempoTotalf = $diff->format('%H horas %i minutos'); 
         $date1 = strtotime($MarcacionDeIngreso);
         $date2 = strtotime($MarcacionDeSalida);
-        $Tiemposalidasa = round((($date2-$date1)/60),2);
-        $tiemposote = date("i:s:00", "$Tiemposalidasa");
-        $tiemposote = strtotime($tiemposote);
+        $Tiempocargosasa = round((($date2-$date1)/60),2);
+        $min1 = $Tiempocargosasa%60;
+        if($min1/10<1){
+          $min1 = "0".$min1;
+        }
+        $horas1 =($Tiempocargosasa/60);
+        if($horas1<10){
+          $horas1 =substr(($Tiempocargosasa/60),0,1 );
+          $probando1 = "0".$horas1 .":" . $min1 . ":00";
+        }else{
+          $horas1 =substr(($Tiempocargosasa/60),0,2) ;
+          $probando1 = $horas1 .":" . $min1 . ":00";
+        }
+        
+        
+        //$tiemposote = date("h:i:s", "$Tiempocargosasa");
+        $tiemposote = strtotime($probando1);
         //$Tiempousar = $diff->format('%H:%i:%s'); 
         date_default_timezone_set('America/Lima');
         $date1 = strtotime($MarcacionBreak);
         $date2 = strtotime($MarcacionBreakSalida);
         //$diff = $date1->diff($date2);
         $TiempoBreak = round((($date2-$date1)/60),2);
-        $tiempito = date("i:s:00", "$TiempoBreak");
-        $tiempito = strtotime($tiempito);
+        $min = $TiempoBreak%60;
+        if($min/10<1){
+          $min = "0".$min;
+        }
+        $horas =($TiempoBreak/60);
+        if($horas<10){
+          $horas =substr(($TiempoBreak/60),0,1 );
+          $probando2 = "0".$horas .":" . $min . ":00";
+        }else{
+          $horas =substr(($TiempoBreak/60),0,2) ;
+          $probando2 = $horas .":" . $min . ":00";
+        }
+        
+        
+        
+        //$tiempito = date("i:s:00", "$TiempoBreak");
+        $tiempito = strtotime($probando2);
         $superfinal = round((($tiemposote-$tiempito)/60),2);
-        $superfinal = date("i:s:00", "$superfinal");
+        $min = $superfinal%60;
+        if($min/10<1){
+          $min = "0".$min;
+        }
+        
+        $horas =($superfinal/60);
+        if($horas<10){
+          $horas =substr(($superfinal/60),0,1 );
+          $superfinal = "0".$horas .":" . $min . ":00";
+        }else{
+          $horas =substr(($superfinal/60),0,2) ;
+          $superfinal = $horas .":" . $min . ":00";
+        }
+        
 
+        
 
         
 
@@ -262,10 +313,33 @@ if ($MarcacionBreak == null){
         //$diff = $date1->diff($date2);
         // will output 2 days
         $Worktime = round((($date2-$date1)/60),2); 
-        $Worktime = date("i:s:00", "$Worktime");
-        $Worktime = strtotime($Worktime);
+        $min = $Worktime%60;
+        if($min/10<1){
+          $min = "0".$min;
+        }
+        $horas =($Worktime/60);
+        if($horas<10){
+          $horas =substr(($Worktime/60),0,1 );
+          $probando2 = "0".$horas .":" . $min . ":00";
+        }else{
+          $horas =substr(($Worktime/60),0,2) ;
+          $probando2 = $horas .":" . $min . ":00";
+        }
+        $Worktime = strtotime($probando2);
         $workfinal = round((($Worktime-$tiempito)/60),2);
-        $workfinal = date("i:s:00", "$workfinal");
+        $min = $workfinal%60;
+        if($min/10<1){
+          $min = "0".$min;
+        }
+        $horas =($workfinal/60);
+        if($horas<10){
+          $horas =substr(($workfinal/60),0,1 );
+          $probando = "0".$horas .":" . $min . ":00";
+        }else{
+          $horas =substr(($workfinal/60),0,2) ;
+          $probando = $horas .":" . $min . ":00";
+        }
+        $workfinal = $probando;
         
         //desde aqui empieza para calcular la suma total (verificar bien)
         $Megafinal = strtotime($superfinal);
@@ -273,8 +347,37 @@ if ($MarcacionBreak == null){
         $sumatotal = strtotime($sumatotal);
         $sumatotal = round((($sumatotal+$Megafinal)/60),2);
         $sumatotal = date("i:s:00", "$sumatotal");
+        
+        //if($Ma)
+        $var1 = "No marcó inicio de Break";
+        $var2 = "No marcó fin de break";
+        if (strncasecmp($var1, $MarcacionBreak,15) === 0) {
+          $superfinal = "No calculable";
+          $workfinal = "No calculable";
+
+        }
+        if(strncasecmp($var2, $MarcacionBreakSalida,15)=== 0){
+          $superfinal = "No calculable";
+          $workfinal = "No calculable";
+        }
+        if($HoraEntrada ==null){
+          $HoraEntrada = "No calculable";
+        }
+        if($HoraSalida == null){
+          $HoraSalida = "No calculable";
+        }
+        if($MarcacionDeIngreso== null){
+          $MarcacionDeIngreso = "No calculable";
+        }
+        if($MarcacionDeSalida== null){
+          $MarcacionDeSalida= "No calculable";
+        }
+        
+        
         $listas .= " <tr>
-                                            
+        
+        
+        
         <td> ".$fila['nieto']." </td>
         <td> ".$fila['mfecha']." </td>
         <td> ".$HoraEntrada." </td>
@@ -289,7 +392,9 @@ if ($MarcacionBreak == null){
         <td> ".$Temprano." </td>
         <td> ".$workfinal." </td>
         <td> ".$superfinal." </td>
-        <td> ".$sumatotal." </td>
+  
+        
+        
         
         
         

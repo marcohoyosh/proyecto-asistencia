@@ -5,6 +5,94 @@ if(!isset($_SESSION["id"])){
 	header("Location: index.php");
 	exit();
 }
+	$breaki = 0;
+    $breaki2 = 0;
+    $entrada = 0;
+    $salida = 0;
+    
+    $MarcacionDeIngreso = null;
+    $MarcacionDeSalida = null;
+    $MarcacionBreak = null;
+    $MarcacionBreakSalida = null;
+	$pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
+	$sql = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario ";
+    foreach($pdo->query($sql) as $fila2) {
+        
+          
+          
+
+          //Calculamos los breaks:
+          $date1 = strtotime($fila2["tiempo"]);
+          $date2 = strtotime("13:00:00");
+          $date3 = strtotime("15:00:00");
+          $Tiempomegasasa = round((($date1-$date2)),2);
+          $Tiempomegasasa2 = round((($date1-$date3)),2);
+          //$tiemposote = date("h:i:s", "$Tiempocargosasa");
+          //$fechita1 = substr($fila2["tiempo"], 0,2);
+          //$numfecha1 = intval($fechita1);
+          //$fechita2 = substr($fila2["horibi"], 0,2);
+          //$numfecha2 = 13;
+          //$fechita3 = substr($fila2["horibs"], 0,2);
+          //$numfecha3 = 15;
+
+          if($breaki < 0) {
+            $breaki = $breaki * (-1);
+          }
+          if($breaki2 < 0) {
+            $breaki2 = $breaki2 * (-1);
+          }
+          
+          if($Tiempomegasasa < $breaki){
+            $breaki = ($Tiempomegasasa);
+            $MarcacionBreak = $fila2["tiempo"];
+            
+          } 
+          if($Tiempomegasasa2 <= $breaki2){
+            $breaki2 = ($Tiempomegasasa2);
+            $MarcacionBreakSalida = $fila2["tiempo"];
+          }
+          
+          //fiajmos tiempos
+          $HoraEntrada = $fila2["entrada"];
+          $HoraSalida = $fila2["salida"];
+        
+        
+        
+    }
+    /// aqui se fijan los valores del incio y fin del break (fijos)
+    $InicioFijoBreak = "13:00:00";
+    $FinFijoBreak = "15:00:00";
+      
+    
+
+if($MarcacionBreak == $MarcacionDeIngreso || $MarcacionBreak == $MarcacionDeSalida ) {
+  $MarcacionBreak = "No marcó inicio de Break";
+}
+if($MarcacionBreakSalida == $MarcacionDeIngreso || $MarcacionBreakSalida == $MarcacionDeSalida ) {
+  $MarcacionBreakSalida = "No marcó fin de Break";
+}
+if($MarcacionBreak == null ) {
+  $MarcacionBreak = "No marcó inicio de Break";
+}
+if($MarcacionBreakSalida == null ) {
+  $MarcacionBreakSalida = "No marcó fin de Break";
+}
+
+$var1 = "No marcó inicio de Break";
+$var2 = "No marcó fin de Break";
+if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {    
+  $empleado = $fila['nieto'];
+  $to = "rodrigo.mozo.01@gmail.com";
+  $subject = "Incorcondancia-Horario";
+  $message = "Probable exceso de tardanza o aunsencia en dia laboral.
+    \n Datos del empleado: \nNombre:" .$empleado. 
+  "\nDia en el que se encuentra la incidencia :" .$fila['mfecha'];
+
+  mail($to, $subject, $message);
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
