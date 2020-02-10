@@ -103,7 +103,9 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="estilo.css">
     <title>Asistencia</title>
-    
+    <script type=text/javascript>
+		setTimeout("document.location=document.location,1000")
+	</script>
 </head>
 <style>
 	* {margin: 0;padding: 0;font-family:sans-serif;border:0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;box-sizing: border-box;}
