@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD']!='POST' || isset($_POST["b"])){
 }
 
 #crear pdo
-$pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
+$pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
 
 #leer datos de post
 $usuario=$_POST["u"];
@@ -15,7 +15,7 @@ $password=$_POST["p"];
 $regresar=$_POST["b"];
 
 #construir comando
-$sql="SELECT * FROM usuarios
+$sql="SELECT * FROM administradores
 WHERE Nombres = '$usuario'";
 
 #ejecutar comando

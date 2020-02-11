@@ -10,11 +10,11 @@ session_start();
             $id=$_COOKIE["id"];
             
             #crear pdo
-            $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
+            $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
         
             #construir comando
             $sql="SELECT * 
-            FROM usuarios 
+            FROM administradores 
             WHERE Id = '$id'";
         
             #ejecutar comando
