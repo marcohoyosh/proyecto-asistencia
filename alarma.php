@@ -4,6 +4,7 @@ $fechaActual = substr($fechaActual , 0, 19);
 $solofecha = date("Y-m-d");
 $solofecha = substr($solofecha, 0, 10);
 $calculando = substr($fechaActual , 11, 8);
+//$calculando = $calculando . ":00";
 $newDate = strtotime ($calculando);
 $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
 //$sql2 = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario group by mfecha, idnieto";
@@ -86,7 +87,7 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
         $HoraEntrada = $fila1["entrada"];
         $HoraSalida = $fila1["salida"];
 
-        $entradita = strtotime($HoraEntrada);
+        //$entradita = strtotime($HoraEntrada);
         $sql = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where nieto.idnieto = '$id' marcaciones.mfecha = '$solofecha' and fusion.diasemana = '$DiaDeSemana' group by mfecha, idnieto";
 
         if (mysql_num_rows($pdo->query($sql)) !=0 ){
@@ -158,7 +159,10 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
                 $HoraEntrada = $fila2["entrada"];
             $HoraSalida = $fila2["salida"];
 
-            $entradita = strtotime($HoraEntrada);
+            //$entradita = strtotime($HoraEntrada);
+            
+
+              
             
 
               
@@ -190,8 +194,9 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
                 
       
     } 
-  $entradita = strtotime ( '+30 minute' , strtotime("19:09:00"));
-    if ($entradita == $newDate ) {
+    $entradita2 = strtotime ( '+30 minute' , strtotime($HoraEntrada) ) ;
+
+    if ($entradita2 == $newDate ) {
         if($MarcacionDeIngreso == null){
           $empleadaso = $nombre_empleado;
           $to = "rodrigo.mozo.01@gmail.com";
@@ -215,18 +220,25 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
 </head>
 <body>
     <h1>Centro de alarmas abierto</h1>
-  <?php  
-        echo $newDate;
-        $espacio = "..........";
-        echo $espacio;
-        echo $entradita;?>
+    <p>Hora actual: <?php  
+        echo $fechaActual;
+        //$espacio = "..........";
+        //echo $espacio;
+        //echo $entradita2;
+       // echo $espacio;
+       // echo $nombre_empleado;
+        //echo $espacio;
+        //echo $calculando;
+        //echo $espacio;
+        //echo $HoraEntrada;?> </p>
+  
     <script>
 		(function(){
 			setInterval(
 				function(){
 					document.location.reload()
 				},
-			500)
+			1000)
 		})()
 	</script>  
 </body>

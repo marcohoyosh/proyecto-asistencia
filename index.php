@@ -92,7 +92,7 @@ if(!isset($_SESSION["id"])){
 										
 										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Enviar</button> 
 										<button type="submit" id="reporte" type="submit" class="btn"  value ="reporte" name ="reporte">Reporte</button>
-										 <a class = "btn" href="alarma.php">Centro de alarmas</a>
+										 <a target="_blank" class = "btn" href="alarma.php">Centro de alarmas</a>
 								
 									</div>
 									
