@@ -55,7 +55,7 @@ if(!isset($_SESSION["id"])){
 				
 				<fieldset>
 
-				<form action="reporte.php" method="POST">
+				<form id="form1" action="reporte.php" method="POST">
 					
 						<div class="container">
 								<div class="page-header text-left">
@@ -90,10 +90,13 @@ if(!isset($_SESSION["id"])){
 									
 									<div class="container">
 										
-										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Enviar</button> 
+										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Consultar</button> 
 										<button type="submit" id="reporte" type="submit" class="btn"  value ="reporte" name ="reporte">Reporte</button>
 										 <a target="_blank" class = "btn" href="alarma.php">Centro de alarmas</a>
-								
+										<?php if($_SESSION["rol"]==1) { ?>
+												
+											<input class ="btn" type="submit" value="reporteidoneo" id="reporteidoneo" name="reporte idóneo" onclick= "document.form1.action = 'procesar.php'; document.form1.submit()" />
+										<?php } ?>
 									</div>
 									
 								</div>							

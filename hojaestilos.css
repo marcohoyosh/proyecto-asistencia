@@ -21,8 +21,11 @@ body{
     
          
 }
-
+.imagen{
+    margin-left: 132px;
+}
 .logom{
+    min-width: 500px;
     float: left;
     padding-top: 40px;
     padding-left: 150px;
@@ -31,10 +34,11 @@ body{
 }
 
 .Formulario{
+    
     padding-top: 20px;
     padding-bottom: 30px;
     display:flex;    
-    margin: 0 auto;
+    margin: 40px auto;
     flex-direction: column;    
     align-items: center;     
     background-color:rgb(255, 255, 255,0.2);
@@ -50,6 +54,8 @@ body{
     margin-bottom:30px;
 }
 button{
+    align-content: center;
+    margin-left: 95px;
     background-color:#717481;
     border: 0;
     padding: 10px;
@@ -61,13 +67,24 @@ button{
     
 }
 .elemento{
+    
     display: flex;
     align-items: center;
     flex-direction: column;
     font-weight: bold;
     
 }
+.elemento1{
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-weight: bold;
+    
+}
+
 .elemento.iniciada{
+    padding-left: 110px;
     display:inline;
     border-radius: 4px;
     font-family: Arial, Helvetica, sans-serif;
@@ -137,6 +154,7 @@ input[type="checkbox"] +label{
 .iconos{
     float: left;
     padding-left: 100px;
+
     
     
 }
@@ -151,4 +169,26 @@ header{
 
 #p{
     font-size: 4rem;
+}
+
+
+@media screen and (min-width: 780px) and (max-width: 1024px){
+    .iconos,  .Formulario, .logom {
+        width: 50%
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 780px){
+    .iconos, .Formulario {
+        width: 100%;
+    }
+}
+
+@media screen and (max-witdh: 480px){
+    .logom{
+        height: 80%;
+    }
+    .iconos, .Formulario{
+        width:100%;
+    }
 }

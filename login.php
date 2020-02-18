@@ -10,7 +10,7 @@ session_start();
             $id=$_COOKIE["id"];
             
             #crear pdo
-            $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
+            $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
         
             #construir comando
             $sql="SELECT * 
@@ -27,6 +27,7 @@ session_start();
             $_SESSION["apellidos"]=$fila["Apellidos"];
             $_SESSION["correo"]=$fila["Correo"];
             $_SESSION["contraseña"]=$fila["Contraseña"];
+            $_SESSION["rol"]=$fila["Rol"];
         }
     } 
 
@@ -44,45 +45,29 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <link rel="stylesheet" href="hojaestilos.css">
     <title>Asistencia</title>
 </head>
 <body >
     
     <div class="contenido">
-            <form action="procesar-login.php" method="post">
+            
         
             <div class="logom">
                 <img src="imagenes/cm2.png">
             </div>
 
-                <div class="iconos">
-
-
-                         <img src="imagenes/golden.png" class="lol"> 
-
-                    
-                        <img src="imagenes/lenacarbon.png" class="lol">  
-
-                    
-                        <img src="imagenes/retablo.png" class="lol">                
-                    
-                    
-                        <img src="imagenes/tinajas.png" class="lol">                 
-                    
-                    
-                        <img src="imagenes/cviche.png" class="lol">   
-                        
-                        
-                        <img src="imagenes/lenasazon.png" class="lol">
-                    
                 
-                </div>
                 
-            <div class="Formulario">                                          
-                        <img src="imagenes/logo.png">
+            <div class="Formulario">
+                <form action="procesar-login.php" method="post">
+                    <div class = "imagen">
+                        <img src="imagenes/logo.png">   
+                    </div>                                          
+                        
                     <div class="titulo">
                         <span>Control de asistencia</span>
                     </div>
@@ -115,18 +100,45 @@ session_start();
                                 <input type="checkbox" name="s" value="1">
                                 <label for="s">Mantener sesión iniciada</label>                    
                                 </div>
-                                <button type="submit" class="elemento">Entrar</button>
+                                <button type="submit" class="elemento1">Entrar</button>
+                                
                                 
                                 
                         
-                        </div>
+                        
                                 
                     
-                </div>
+                
+                
                 
              
 
-        </form>
+                </form>
+        </div>                            
+    
+                <div class="iconos">
+
+
+                         <img src="imagenes/golden.png" class="lol"> 
+
+                    
+                        <img src="imagenes/lenacarbon.png" class="lol">  
+
+                    
+                        <img src="imagenes/retablo.png" class="lol">                
+                    
+                    
+                        <img src="imagenes/tinajas.png" class="lol">                 
+                    
+                    
+                        <img src="imagenes/cviche.png" class="lol">   
+                        
+                        
+                        <img src="imagenes/lenasazon.png" class="lol">
+                    
+                
+                </div>
+
     </div>
 </body>
 </html>

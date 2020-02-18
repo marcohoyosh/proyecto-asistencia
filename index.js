@@ -72,6 +72,7 @@ $(document).ready(function(){
   })
   
   $('#reporte').on('click', function(e) {
+    e.preventDefault();
     var id1 = $('#nietos').val();
     var fe1 =$('#fecha1').val();
     var fe2= $('#fecha2').val();
@@ -86,6 +87,33 @@ $(document).ready(function(){
         type: 'POST',
         url: 'reporte.php',
         data: {'nieto': id1, 'fecha1' : fe1, 'fecha2' : fe2}
+      })
+    }
+  })
+
+  $('#ReporteIdóneo').on('click', function(e) {
+    e.preventDefault();
+    var id3 = $('#nietos').val();
+    var fechita1 =$('#fecha1').val();
+    var fechita2= $('#fecha2').val();
+    console.log(id3);
+    console.log(fechita1);
+    console.log(fechita2);
+    if(id3 ==0 || fechita1=='' || fechita2==''){
+      alert('Uno de los campos esta vacio');
+      $('#resultSearch').html('');
+    }else{
+      $.ajax({
+        type: 'POST',
+        url: 'procesar.php',
+        data: {'id3': id3, 'fechita1' : fechita1, 'fechita2' : fechita2}
+      })
+      
+      .done(function(listas_rep){
+        //$('#fecha1').val('');
+        //$('#fecha2').val('');
+        //console.log(listas_rep);
+        $('#resultSearch').html(listas_rep);
       })
     }
   })

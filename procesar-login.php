@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD']!='POST' || isset($_POST["b"])){
 }
 
 #crear pdo
-$pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
+$pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
 
 #leer datos de post
 $usuario=$_POST["u"];
@@ -33,6 +33,7 @@ if(count($fila)!=0){
         $_SESSION["apellidos"]=$fila[0]["Apellidos"];
         $_SESSION["correo"]=$fila[0]["Correo"];
         $_SESSION["contraseña"]=$fila[0]["Contraseña"];
+        $_SESSION["rol"]=$fila[0]["Rol"];
 
         #entra si desea crear la cookie
         if(isset($_POST["s"])){

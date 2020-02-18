@@ -78,24 +78,29 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
     $estado2 =false;
     $estado = false;
     $contador=0;
-
-    
+    $mysqli = new MySQLi('localhost', 'insiteso_root', 'mysql', 'insiteso_asistencia2');
+    //echo "stepincio";
       $sql3 ="SELECT * FROM nieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where fusion.diasemana = '$DiaDeSemana'";
       foreach($pdo->query($sql3) as $fila1) {
         $id = $fila1["idnieto"];
         $nombre_empleado = $fila1["nieto"];
         $HoraEntrada = $fila1["entrada"];
         $HoraSalida = $fila1["salida"];
-
+        $MarcacionDeIngreso = null;
+        //echo "stepruebaaa";
         //$entradita = strtotime($HoraEntrada);
-        $sql = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where nieto.idnieto = '$id' marcaciones.mfecha = '$solofecha' and fusion.diasemana = '$DiaDeSemana' group by mfecha, idnieto";
+        $sql = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where nieto.idnieto = '$id' and marcaciones.mfecha = '$solofecha' and fusion.diasemana = '$DiaDeSemana' group by mfecha, idnieto";
+        //$k =1;
+        //echo "step2.5";
+        //if (is_array($pdo->query($sql)) || is_object($pdo->query($sql))) {
 
-        if (mysql_num_rows($pdo->query($sql)) !=0 ){
+          //echo "step222222222";
+          $result=mysqli_query($mysqli,$sql);
 
-        
-          foreach($pdo->query($sql) as $fila2) {
-            
-
+          while($fila2 = mysqli_fetch_array($result)) {
+                //echo "step whileeeeeee". $k;
+                //$k++;
+          
 
                 //Ahora calculamos marcaciones de Ingreso y salida
 
@@ -190,14 +195,23 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
 
         //$actualiza = substr($fechaActual , 11, 8);
         //$newDate = strtotime (substr($fechaActual , 11, 8));
-        
+        //if($MarcacionDeIngreso == null){
+          //echo "es nulaso";
+          //echo $id;
+        //}else{
+          //echo "aqui si hay algo";
+          //echo $id;
+        //}
                 
-      
-    } 
-    $entradita2 = strtotime ( '+30 minute' , strtotime($HoraEntrada) ) ;
+        //echo "step44444444444444444444";
+    //} 
+    $entradita2 = strtotime ( '30  minute' , strtotime($HoraEntrada) ) ;
 
     if ($entradita2 == $newDate ) {
+    //if (1 == 1 ) {
+      //echo "step verificar1";
         if($MarcacionDeIngreso == null){
+          //echo "enviando email";
           $empleadaso = $nombre_empleado;
           $to = "rodrigo.mozo.01@gmail.com";
           $subject = "Alerta-de-Inasistencia";
@@ -216,23 +230,31 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
     <title>Centro de alarmas</title>
 </head>
 <body>
-    <h1>Centro de alarmas abierto</h1>
-    <p>Hora actual: <?php  
-        echo $fechaActual;
-        //$espacio = "..........";
-        //echo $espacio;
-        //echo $entradita2;
-       // echo $espacio;
-       // echo $nombre_empleado;
-        //echo $espacio;
-        //echo $calculando;
-        //echo $espacio;
-        //echo $HoraEntrada;?> </p>
-  
-    <script>
+  <div id ="page">
+    <div id = "content_container">
+      <div id="content">
+        <h1>Centro de alarmas abierto</h1>
+        <p>Fecha y Hora Actual: <?php  
+            echo $fechaActual;
+            //$espacio = "..........";
+            //echo $solofecha;
+            //echo $espacio;
+            //echo $entradita2;
+           //echo $espacio;
+           //echo $newDate;
+            //echo $espacio;
+            //echo $calculando;
+            //echo $espacio;
+            //echo $HoraEntrada;?> </p>
+      </div>
+    
+    </div>
+  </div>
+  <script>
 		(function(){
 			setInterval(
 				function(){
@@ -240,6 +262,6 @@ $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","in
 				},
 			1000)
 		})()
-	</script>  
+	</script>
 </body>
 </html>
