@@ -15,11 +15,16 @@ function getDatos(){
   //$result = $mysqli->query($query);
   //$result2 = $mysqli->query($query2);
     
-    
+  $sumatotal= null;  
   $listas ="";
   $sumatotal = "00:00:00";
   $subfecha = null; 
   foreach($pdo->query($sql2) as $fila) {
+    date_default_timezone_set('America/Lima');
+    $date1 = strtotime($fecha1);
+    $date2 = strtotime($fecha2);
+    //$diff = $date1->diff($date2);
+    $TiempoBreak = round((($date2-$date1)/60),2);
     $breaki = 0;
     $breaki2 = 0;
     $entrada = 0;
@@ -339,7 +344,7 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
           $horas =substr(($workfinal/60),0,2) ;
           $probando = $horas .":" . $min . ":00";
         }
-        $workfinal = $probando;
+          = $probando;
         
         //desde aqui empieza para calcular la suma total (verificar bien)
         $Megafinal = strtotime($superfinal);
