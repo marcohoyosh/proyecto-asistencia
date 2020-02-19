@@ -14,17 +14,21 @@ function getDatos(){
   //$sql = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2'";
   //$result = $mysqli->query($query);
   //$result2 = $mysqli->query($query2);
-    
+  $SumaMin = "00:00:00";
+  $TotalDias = null;  
   $sumatotal= null;  
   $listas ="";
   $sumatotal = "00:00:00";
   $subfecha = null; 
-  foreach($pdo->query($sql2) as $fila) {
-    date_default_timezone_set('America/Lima');
+  $count = 0;
+  $acumulador = null;
+  date_default_timezone_set('America/Lima');
     $date1 = strtotime($fecha1);
     $date2 = strtotime($fecha2);
     //$diff = $date1->diff($date2);
-    $TiempoBreak = round((($date2-$date1)/60),2);
+    $TotalDias = round((($date2-$date1)/60/60/24),2);
+  foreach($pdo->query($sql2) as $fila) {
+    $count++;
     $breaki = 0;
     $breaki2 = 0;
     $entrada = 0;
@@ -344,7 +348,7 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
           $horas =substr(($workfinal/60),0,2) ;
           $probando = $horas .":" . $min . ":00";
         }
-          = $probando;
+          $workfinal = $probando;
         
         //desde aqui empieza para calcular la suma total (verificar bien)
         $Megafinal = strtotime($superfinal);
@@ -378,6 +382,21 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
           $MarcacionDeSalida= "No calculable";
         }
         
+        //$estafecha = strtotime($superfinal);
+        //$prueba = strtotime("08:22:00");
+        //$estafecha2 = round(($estafecha/60),2);
+        //$SumaMin= round((($SumaMin+$estafecha)),2);
+        
+        //PROBANDO FUNCION:
+        
+
+        //require_once('funciones.php');
+        //$SumaMin = suma_horas($SumaMin,$superfinal);
+        //$guardando = " <tr>  
+                   // <td> ".$SumaMin." </td>
+        
+       // </tr>"; 
+
         
         $listas .= " <tr>
         
@@ -397,6 +416,8 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
         <td> ".$Temprano." </td>
         <td> ".$workfinal." </td>
         <td> ".$superfinal." </td>
+        
+        
   
         
         
@@ -405,12 +426,18 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
         
    
     </tr>";
+
+    
   }  
 
   return $listas;
 }
-
 echo getDatos();
+
+
+
+
+
 
   
 

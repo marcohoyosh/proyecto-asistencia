@@ -2,24 +2,33 @@
   require_once 'conexion.php';
   date_default_timezone_set('America/Lima');
 
-function getDatos(){
-    $id = $_POST["id"];
+function getResumen(){
+    $id = $_POST["idnieto"];
     $fecha1 = $_POST["fecha1"];
     $fecha2 = $_POST["fecha2"];
   $mysqli = getConn();
-  $pdo=new PDO("mysql:host=localhost;dbname=insiteso_asistencia2;charset=utf8","insiteso_root","mysql");
+  $pdo=new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8","root","");
   $sql2 = "SELECT * FROM marcaciones inner join nieto on marcaciones.id = nieto.idnieto inner join fusion on fusion.idturno = nieto.idturno inner join horario on fusion.idhorario = horario.idhorario where marcaciones.id = '$id' and marcaciones.mfecha between '$fecha1' and '$fecha2' group by mfecha";
   
   //$query = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2' group by fecha";
   //$sql = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2'";
   //$result = $mysqli->query($query);
   //$result2 = $mysqli->query($query2);
-    
-    
+  $SumaMin = "00:00:00";
+  $TotalDias = null;  
+  $sumatotal= null;  
   $listas ="";
   $sumatotal = "00:00:00";
   $subfecha = null; 
+  $count = 0;
+  $acumulador = null;
+  date_default_timezone_set('America/Lima');
+    $date1 = strtotime($fecha1);
+    $date2 = strtotime($fecha2);
+    //$diff = $date1->diff($date2);
+    $TotalDias = round((($date2-$date1)/60/60/24),2);
   foreach($pdo->query($sql2) as $fila) {
+    $count++;
     $breaki = 0;
     $breaki2 = 0;
     $entrada = 0;
@@ -339,7 +348,7 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
           $horas =substr(($workfinal/60),0,2) ;
           $probando = $horas .":" . $min . ":00";
         }
-        $workfinal = $probando;
+          $workfinal = $probando;
         
         //desde aqui empieza para calcular la suma total (verificar bien)
         $Megafinal = strtotime($superfinal);
@@ -373,40 +382,30 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
           $MarcacionDeSalida= "No calculable";
         }
         
+        //$estafecha = strtotime($superfinal);
+        //$prueba = strtotime("08:22:00");
+        //$estafecha2 = round(($estafecha/60),2);
+        //$SumaMin= round((($SumaMin+$estafecha)),2);
         
-        $listas .= " <tr>
+        //PROBANDO FUNCION:
         
+
+        require_once('funciones.php');
+        $SumaMin = suma_horas($SumaMin,$superfinal);
+        $guardando = " <tr>  
+                    <td> ".$SumaMin." </td>
         
-        
-        <td> ".$fila['nieto']." </td>
-        <td> ".$fila['mfecha']." </td>
-        <td> ".$HoraEntrada." </td>
-        <td> ".$InicioFijoBreak." </td>
-        <td> ".$FinFijoBreak." </td>
-        <td> ".$HoraSalida." </td>
-        <td> ".$work1." </td>
-        <td> ".$MarcacionBreak." </td>
-        <td> ".$MarcacionBreakSalida." </td>
-        <td> ".$work2." </td>
-        <td> ".$Tardanza." </td>
-        <td> ".$Temprano." </td>
-        <td> ".$workfinal." </td>
-        <td> ".$superfinal." </td>
-  
+        </tr>"; 
+
         
         
-        
-        
-        
-   
-    </tr>";
+
+    
   }  
 
-  return $listas;
+  return $guardando;
 }
-
-echo getDatos();
-
+ echo getResumen();
   
 
 ?>

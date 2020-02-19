@@ -91,11 +91,11 @@ if(!isset($_SESSION["id"])){
 									<div class="container">
 										
 										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Consultar</button> 
-										<button type="submit" id="reporte" type="submit" class="btn"  value ="reporte" name ="reporte">Reporte</button>
+										<button type="submit" id="reportecito" type="submit" class="btn"  value ="reportecito" name ="reportecito">Reporte</button>
 										 <a target="_blank" class = "btn" href="alarma.php">Centro de alarmas</a>
 										<?php if($_SESSION["rol"]==1) { ?>
-												
-											<input class ="btn" type="submit" value="reporteidoneo" id="reporteidoneo" name="reporte idóneo" onclick= "document.form1.action = 'procesar.php'; document.form1.submit()" />
+											<input type="submit" class="btn" value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo" />
+											
 										<?php } ?>
 									</div>
 									
@@ -107,6 +107,16 @@ if(!isset($_SESSION["id"])){
 
 		</div>	
 			<input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
+			<table>
+				<thead>
+					<th>total</th>
+									
+				</thead>
+				<tbody id="resumen">
+	 
+						
+				</tbody>					
+			</table>							
 				<table>
 				<thead>
 									<tr>

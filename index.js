@@ -49,36 +49,60 @@ $(document).ready(function(){
     var id = $('#nietos').val();
     var fecha1 =$('#fecha1').val();
     var fecha2= $('#fecha2').val();
-    //console.log(id);
-    //console.log(fecha1);
-    //console.log(fecha2);
+    var funcion1 = lista();
+    var funcion2 = resumen();
+    console.log(id);
+    console.log(fecha1);
+    console.log(fecha2);
     if(id==0 || fecha1=='' || fecha2==''){
       alert('Uno de los campos esta vacio');
       $('#resultSearch').html('');
     }else{
-      $.ajax({
-        type: 'POST',
-        url: 'procesar2.php',
-        data: {'idnieto': id, 'fecha1' : fecha1, 'fecha2' : fecha2}
-      })
+      var realizados = $.when(funcion1,funcion2);
       
-      .done(function(listas_rep){
+      realizados.done(function(x,y) {
         //$('#fecha1').val('');
         //$('#fecha2').val('');
         //console.log(listas_rep);
-        $('#resultSearch').html(listas_rep);
+        $('#resultSearch').html(x);
+        $('#resumen').html(y);
+        
       })
+      
     }
   })
-  
+
+  function lista(){
+    var id = $('#nietos').val();
+    var fecha1 =$('#fecha1').val();
+    var fecha2= $('#fecha2').val();
+    return $.ajax({
+      type: 'POST',
+      url: 'procesar2.php',
+      data: {'idnieto': id, 'fecha1' : fecha1, 'fecha2' : fecha2}
+    });
+  }
+
+  function resumen(){
+    var id = $('#nietos').val();
+    var fecha1 =$('#fecha1').val();
+    var fecha2= $('#fecha2').val();
+    return $.ajax({
+      type: 'POST',
+      url: 'procesar.php',
+      data: {'idnieto': id, 'fecha1' : fecha1, 'fecha2' : fecha2}
+    });
+  }
+
+
   $('#reporte').on('click', function(e) {
-    e.preventDefault();
+    
     var id1 = $('#nietos').val();
     var fe1 =$('#fecha1').val();
     var fe2= $('#fecha2').val();
-    console.log(id1);
-    console.log(fe1);
-    console.log(fe2);
+    //console.log(id1);
+    //console.log(fe1);
+    //console.log(fe2);
     if(id1==0 || fe1=='' || fe2==''){
       alert('Uno de los campos esta vacio');
     
@@ -92,13 +116,13 @@ $(document).ready(function(){
   })
 
   $('#ReporteIdóneo').on('click', function(e) {
-    e.preventDefault();
+    
     var id3 = $('#nietos').val();
     var fechita1 =$('#fecha1').val();
     var fechita2= $('#fecha2').val();
-    console.log(id3);
-    console.log(fechita1);
-    console.log(fechita2);
+    //console.log(id3);
+    //console.log(fechita1);
+    //console.log(fechita2);
     if(id3 ==0 || fechita1=='' || fechita2==''){
       alert('Uno de los campos esta vacio');
       $('#resultSearch').html('');
@@ -117,5 +141,7 @@ $(document).ready(function(){
       })
     }
   })
+  
+ 
 
 })
