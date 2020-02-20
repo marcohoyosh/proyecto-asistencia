@@ -118,7 +118,7 @@ if(!isset($_SESSION["id"])){
 					
 						<td>total</td>
 						<td>Tardanzas</td>
-						<td>Temprano</td>
+						<td>Salidas Tempranas</td>
 						<td>No marcadas</td>
 					</tr>							
 					

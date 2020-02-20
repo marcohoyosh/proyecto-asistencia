@@ -22,6 +22,8 @@ function getDatos(){
   $subfecha = null; 
   $count = 0;
   $acumulador = null;
+  $MarcacionBreak2 = null;
+  $MarcacionBreakSalida2 = null;
   date_default_timezone_set('America/Lima');
     $date1 = strtotime($fecha1);
     $date2 = strtotime($fecha2);
@@ -266,9 +268,22 @@ $var2 = "No marcó fin de Break";
         //$tiemposote = date("h:i:s", "$Tiempocargosasa");
         $tiemposote = strtotime($probando1);
         //$Tiempousar = $diff->format('%H:%i:%s'); 
+        $var1 = "No marcó inicio de Break";
+        $var2 = "No marcó fin de Break";
+        if(strncasecmp($var1, $MarcacionBreak,15) === 0) {
+          $MarcacionBreak2 = "13:00:00";
+        } else{
+          $MarcacionBreak2 = $MarcacionBreak;
+        }
+        if(strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {
+          $MarcacionBreakSalida2 = "15:00:00";
+          
+        } else {
+          $MarcacionBreakSalida2 = $MarcacionBreakSalida;
+        }
         date_default_timezone_set('America/Lima');
-        $date1 = strtotime($MarcacionBreak);
-        $date2 = strtotime($MarcacionBreakSalida);
+        $date1 = strtotime($MarcacionBreak2);
+        $date2 = strtotime($MarcacionBreakSalida2);
         //$diff = $date1->diff($date2);
         $TiempoBreak = round((($date2-$date1)/60),2);
         $min = $TiempoBreak%60;
@@ -359,22 +374,14 @@ $var2 = "No marcó fin de Break";
         $sumatotal = date("i:s:00", "$sumatotal");
         
         //if($Ma)
-        $var1 = "No marcó inicio de Break";
-        $var2 = "No marcó fin de break";
-        if (strncasecmp($var1, $MarcacionBreak,15) === 0) {
-          $superfinal = "No calculable";
-          $workfinal = "No calculable";
-
-        }
-        if(strncasecmp($var2, $MarcacionBreakSalida,15)=== 0){
-          $superfinal = "No calculable";
-          $workfinal = "No calculable";
-        }
+        
         if($HoraEntrada ==null){
           $HoraEntrada = "No calculable";
+          $superfinal = "No calculable";
         }
         if($HoraSalida == null){
           $HoraSalida = "No calculable";
+          $superfinal = "No calculable";
         }
         if($MarcacionDeIngreso== null){
           $MarcacionDeIngreso = "No calculable";
