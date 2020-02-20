@@ -195,8 +195,20 @@ if(!isset($_SESSION["id"])){
 			<input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
 			<table>
 				<thead>
-					<th>total</th>
-									
+					
+					<tr>
+						<th>Tiempo Laborado</th>
+						<th colspan="3">Tiempo no Laborado</th>					
+					</tr>
+					<tr>
+					
+						<td>total</td>
+						<td>Tardanzas</td>
+						<td>Temprano</td>
+						<td>No marcadas</td>
+					</tr>							
+					
+					
 				</thead>
 				<tbody id="resumen">
 	 
