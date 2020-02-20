@@ -186,7 +186,7 @@ if($MarcacionBreakSalida == null ) {
 
 $var1 = "No marcó inicio de Break";
 $var2 = "No marcó fin de Break";
-if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {    
+/*if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {    
   $empleado = $fila['nieto'];
   $to = "rodrigo.mozo.01@gmail.com";
   $subject = "Incorcondancia-Horario";
@@ -195,7 +195,7 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
   "\nDia en el que se encuentra la incidencia :" .$fila['mfecha'];
 
   mail($to, $subject, $message);
-}
+}*/
       $MarcI = strtotime($MarcacionDeIngreso);
       $HI = strtotime($HoraEntrada);
         
@@ -225,6 +225,7 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
         $diff = $date1->diff($date2);
         // will output 2 days
         $Temprano = $diff->format('%H horas %i minutos').PHP_EOL; 
+         
         $work2 = $MarcacionDeSalida;
       } else {
         $Temprano = '00 horas 00 minutos';

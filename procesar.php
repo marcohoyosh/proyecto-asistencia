@@ -14,6 +14,11 @@ function getResumen(){
   //$sql = "SELECT * FROM nuevo inner join nieto on nieto.idnieto=nuevo.idempleado inner join marcaciones on marcaciones.mfecha = nuevo.fecha where nuevo.idempleado = '$id' and marcaciones.id = '$id' and nuevo.fecha between '$fecha1' and '$fecha2'";
   //$result = $mysqli->query($query);
   //$result2 = $mysqli->query($query2);
+  $guardando="";
+  $Agregar = "00:00:00";
+  $SumaNoMarcadas = "00:00:00";
+  $SumaTemprano = "00:00:00";
+  $SumaTardanza = "00:00:00";
   $SumaMin = "00:00:00";
   $TotalDias = null;  
   $sumatotal= null;  
@@ -186,7 +191,7 @@ if($MarcacionBreakSalida == null ) {
 
 $var1 = "No marcó inicio de Break";
 $var2 = "No marcó fin de Break";
-if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {    
+/*if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) === 0) {    
   $empleado = $fila['nieto'];
   $to = "rodrigo.mozo.01@gmail.com";
   $subject = "Incorcondancia-Horario";
@@ -195,7 +200,7 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
   "\nDia en el que se encuentra la incidencia :" .$fila['mfecha'];
 
   mail($to, $subject, $message);
-}
+}*/
       $MarcI = strtotime($MarcacionDeIngreso);
       $HI = strtotime($HoraEntrada);
         
@@ -206,9 +211,11 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
         $diff = $date1->diff($date2);
         // will output 2 days
         $Tardanza = $diff->format('%H horas %i minutos').PHP_EOL; 
+        $Tardanza2 = $diff->format('%H:%I:00').PHP_EOL;
         $work1= $MarcacionDeIngreso;
       }else{
         $Tardanza = '00 horas 00 minutos';
+        $Tardanza2 = '00:00:00';
         $work1 = $HoraEntrada;
         
       }
@@ -224,10 +231,12 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
         $date2 = new DateTime($MarcacionDeSalida);
         $diff = $date1->diff($date2);
         // will output 2 days
-        $Temprano = $diff->format('%H horas %i minutos').PHP_EOL; 
+        $Temprano = $diff->format('%H : %i : 00').PHP_EOL; 
+        $Temprano2 = $diff->format('%H:%I:00').PHP_EOL;
         $work2 = $MarcacionDeSalida;
       } else {
         $Temprano = '00 horas 00 minutos';
+        $Temprano2 = "00:00:00";
         $work2 = $HoraSalida;
       }
 
@@ -391,9 +400,35 @@ if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $Marcacio
         
 
         require_once('funciones.php');
+        $var4 = "No calculable";
+        if (strncasecmp($var4, $superfinal,10) === 0) {
+          $superfinal = "00:00:00";
+        }
+
         $SumaMin = suma_horas($SumaMin,$superfinal);
+        $SumaTardanza = suma_horas($SumaTardanza,$Tardanza2);
+        $SumaTemprano = suma_horas($SumaTemprano,$Temprano2);
+        
+        $var1 = "No marcó inicio de Break";
+        $var2 = "No marcó fin de Break";
+        $Agregar  = "00:00:00";
+        if (strncasecmp($var1, $MarcacionBreak,15) === 0 && strncasecmp($var2, $MarcacionBreakSalida,15) ===0) {
+          $Agregar = "02:00:00";
+        } else if (strncasecmp($var1, $MarcacionBreak,15) === 0 || strncasecmp($var2, $MarcacionBreakSalida,15) ===0) {
+          $Agregar = "01:00:00";
+        } else{
+          $Agregar  = "00:00:00";
+        }
+
+        $SumaNoMarcadas = suma_horas($SumaNoMarcadas,$Agregar);
+        
         $guardando = " <tr>  
+        
                     <td> ".$SumaMin." </td>
+                    <td> ".$SumaTardanza." </td>
+                    <td> ".$SumaTemprano." </td>
+                    <td> ".$SumaNoMarcadas." </td>
+                    
         
         </tr>"; 
 
