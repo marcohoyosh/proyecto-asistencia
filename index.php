@@ -33,11 +33,12 @@ if(!isset($_SESSION["id"])){
 
     
 <body>
+
 <header>    
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color" style="background-color: #737373 !important">
-  <a class="navbar-brand" href="#"><img src="imagenes/cmlogo.png" alt="Logo" height="80px" class="logo"></a>
+<nav class=" navbar navbar-expand-lg navbar-dark info-color" style="background-color: #737373 !important">
+  <a class="navbar-brand" href="#"><img src="imagenes/cmlogo.png" alt="Logo" width="180" class="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -85,7 +86,7 @@ if(!isset($_SESSION["id"])){
 
 
 <!-- Material form contact -->
-<div class="card">
+<div class="card pt-0">
 
     <h2 class="card-header info-color white-text text-center py-4" style="font-family:Poppins">
     
@@ -96,10 +97,10 @@ if(!isset($_SESSION["id"])){
     </h2>
 
     <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
+    <div class="container-fluid card-body px-lg-5 pt-0">
 
         <!-- Form -->
-        <form class="text-center" style="color: #757575;" action="#!">
+        <form id="form1" action="reporte.php" method="POST" class="text-center" style="color: #757575;" action="#!">
 			<div class="row col-md-12">
 
             <!-- Local -->
@@ -131,22 +132,21 @@ if(!isset($_SESSION["id"])){
 
             <!-- Fechas -->
             <div class="row col-md-3 md-form mt-3">
+			<label class="text-center">Rango de Fecha</label>
+		
+			<div class="col-md-6">
+
+			<div class="md-form pt-3">
 			
-			<div class="col-md-6">
-
-			<div class="md-form">
-			<label for="fecha1" >De:</label>
-			<br>
- 			 <input placeholder="Seleccionar" type="date" id="fecha1" name="fecha1" step="1" class="pt-4 form-control datepicker">
+ 			 <input placeholder="Desde:" type="date" id="fecha1" name="fecha1" step="1" class="form-control datepicker">
 			</div>
 			</div>
 
 			<div class="col-md-6">
 
-			<div class="md-form">
-			<label for="fecha2" >Hasta:</label>
-			<br>
-			<input placeholder="Seleccionar" type="date" id="fecha2" name="fecha2" step="1" class="pt-4 form-control datepicker">
+			<div class="md-form pt-3">
+		
+			<input placeholder="Hasta:" type="date" id="fecha2" name="fecha2" step="1" class="form-control datepicker">
 			</div>
 			</div>
 			</div>
@@ -157,13 +157,16 @@ if(!isset($_SESSION["id"])){
 
 			<div class="row botones">
 			
-			<div class="container m-5">
+			<div class="container col-md-12 " style="margin:15px 10px 15px 10px !important;font-family:Poppins">
 										
-										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Consultar</button> 
-										<button type="submit" id="reportecito" type="submit" class="btn"  value ="reportecito" name ="reportecito">Reporte</button>
-										 <a target="_blank" class = "btn" href="alarma.php">Centro de alarmas</a>
+										<button type="submit" id="enviar" type="submit"  value ="enviar" name ="enviar" class="btn btn-secondary btn-rounded waves-effect" style="border-radius:30px">Consultar</button>
+
+										<button type="submit"  id="reportecito" type="submit"  value ="reportecito" name ="reportecito" class="btn btn-danger btn-rounded waves-effect" style="border-radius:30px">Reporte</button>
+
+										 <a target="_blank" class="btn btn-warning btn-rounded waves-effect" style="border-radius:30px" href="alarma.php">Centro de alarmas</a>
+										
 										<?php if($_SESSION["rol"]==1) { ?>
-											<input type="submit" class="btn" value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo" />
+									<input type="submit" class="btn btn-success btn-rounded waves-effect" style="border-radius:30px"	 value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo" />
 											
 										<?php } ?>
 									</div>
@@ -183,7 +186,31 @@ if(!isset($_SESSION["id"])){
 
 
 
-
+<table class="table"  style="display: flex !important;align-items: center !important;justify-content: center !important;">
+  <thead class="black white-text font-weight-bold ">
+    <tr style="background-color: #737373 !important;">
+	<th style="display: inline" scope="col">Nombre</th>
+	<th  style="display: inline"  scope="col">Fecha</th>
+	<th  style="display: inline"  scope="col">Horario Entrada</th>
+	<th  style="display: inline"  scope="col">Inicio Refrigerio</th>
+	<th  style="display: inline"  scope="col">Salida Refrigerio</th>
+	<th  style="display: inline"  scope="col">Horario Salida</th>
+	<th  style="display: inline"  scope="col">Marcacion Ingreso</th>
+	<th  style="display: inline"  scope="col">Marcacion de inicio Refrigerio</th>
+	<th  style="display: inline"  scope="col">Marcacion de fin Refrigerio</th>
+	<th  style="display: inline"  scope="col">Marcacion Salida</th>
+	<th  style="display: inline"  scope="col">Tardanza</th>
+	<th  style="display: inline"  scope="col">Salida temprana</th>
+	<th  style="display: inline"  scope="col">Worktime</th>
+	<th  style="display: inline"  scope="col">Tiempo total</th>
+											
+    </tr>
+  </thead>
+  <tbody id="resultSearch">
+	 
+						
+	 </tbody>
+</table>
 
 
 
@@ -202,7 +229,7 @@ if(!isset($_SESSION["id"])){
 					</tr>
 					<tr>
 					
-						<td>total</td>
+						<td>total</td>	
 						<td>Tardanzas</td>
 						<td>Temprano</td>
 						<td>No marcadas</td>
@@ -214,7 +241,10 @@ if(!isset($_SESSION["id"])){
 	 
 						
 				</tbody>					
-			</table>							
+			</table>
+
+
+
 				<table>
 				<thead>
 									<tr>
