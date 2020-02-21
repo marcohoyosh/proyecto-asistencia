@@ -20,7 +20,7 @@ if(!isset($_SESSION["id"])){
   
     <title>Asistencia</title>
 	<!-- Font Awesome -->
-	
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">	
 <link rel="stylesheet" href="index.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -53,7 +53,7 @@ if(!isset($_SESSION["id"])){
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i>  <?php echo $_SESSION["nombres"] ?> </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <a class="dropdown-item" href="cerrar_cesion.php">Cerrar Sesión</a>
+          <a class="dropdown-item" href="cerrar_cesion.php"><i class="fa fa-close"></i> Cerrar Sesión</a>
         </div>
       </li>
     </ul>
@@ -164,12 +164,12 @@ if(!isset($_SESSION["id"])){
 			<div class="row botones">
 			
 			<div class="container col-md-12 " style="margin:15px 0px 20px 0px !important;font-family:Poppins">
-										
+			
 										<button type="submit" id="enviar" type="submit"  value ="enviar" name ="enviar" class="btn btn-outline-secondary btn-rounded waves-effect col-md-2" style="border-radius:30px">Consultar</button>
+										<a target="_blank" class="btn btn-outline-danger btn-rounded waves-effect col-md-2" style="border-radius:30px" href="alarma.php">Centro de alarmas</a>
+										<button type="submit"  id="reportecito" type="submit"  value ="reportecito" name ="reportecito" class="btn btn-outline-info btn-rounded waves-effect col-md-2" style="border-radius:30px">Reporte</button>
 
-										<button type="submit"  id="reportecito" type="submit"  value ="reportecito" name ="reportecito" class="btn btn-outline-danger btn-rounded waves-effect col-md-2" style="border-radius:30px">Reporte</button>
-
-										 <a target="_blank" class="btn btn-outline-info btn-rounded waves-effect col-md-2" style="border-radius:30px" href="alarma.php">Centro de alarmas</a>
+										 
 										
 										<?php if($_SESSION["rol"]==1) { ?>
 											<button type="submit"  id="reportecito" type="submit"   value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo"  class="btn btn-outline-success btn-rounded waves-effect col-md-2"  style="border-radius:30px">Reporte Idóneo</button>
@@ -191,7 +191,7 @@ if(!isset($_SESSION["id"])){
 
 <div class=" container p-5  "  >
 <table class="table "  style="max-height:1px">
-  <thead class="white-text text-center blue ">
+  <thead class="white-text text-center blue " id = "cabecera">
     <tr class="  p-0 m-0 " >
 		<th class=" font-weight-bold h4" >TIEMPO LABORADO</th>
 		<th class=" font-weight-bold h4" colspan="3">TIEMPO NO LABORADO</th>	
@@ -214,9 +214,9 @@ if(!isset($_SESSION["id"])){
 
 
 <div class="container table-responsive pl-4">
-<table class="table-expand text-center"  >
-  <thead class="black white-text font-weight-bold ">
-    <tr >
+<table class="w3-table-all"  >
+  <thead>
+    <tr class="w3-red">
 	<th scope="col">Nombre</th>
 	<th   scope="col">Fecha</th>
 	<th   scope="col">Horario Entrada</th>

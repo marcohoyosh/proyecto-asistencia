@@ -1,12 +1,24 @@
 #resumen td {
-  color:red !important;
+  color:#8B0000 !important;
   font-weight:bold !important;
   background-color:  white!important;
 
+}
+#cabecera td {
+  color:#483D8B !important;
+  font-weight:bold !important;
+  background-color:  white!important;
+
+}
+#cabecera th {
+  color:#2F4F4F !important;
+  font-weight:bold !important;
+  background-color:  white!important;
 }
 
 #resultSearch td{
   color:white !important;
   font-weight:bold !important;
-  background-color: skyblue !important;
+  background-color: #2F4F4F !important;
+  
 }

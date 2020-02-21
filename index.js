@@ -118,11 +118,10 @@ $(document).ready(function(){
   $('#frameModalBottom').modal('show')
 
  // Data Picker Initialization
- $('.datepicker').pickadate({
-  today: '',
-  clear: 'Clear selection',
-  close: 'Cancel'
-  })
+
+ 
+
+  
 
   $('#ReporteIdóneo').on('click', function(e) {
     
