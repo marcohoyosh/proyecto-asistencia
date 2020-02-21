@@ -441,10 +441,10 @@ $var2 = "No marcó fin de Break";
         
         $guardando = " <tr>  
         
-                    <td> ".$SumaMin." </td>
-                    <td> ".$SumaTardanza." </td>
-                    <td> ".$SumaTemprano." </td>
-                    <td> ".$SumaNoMarcadas." </td>
+                    <td > ".$SumaMin." </td>
+                    <td > ".$SumaTardanza." </td>
+                    <td > ".$SumaTemprano." </td>
+                    <td > ".$SumaNoMarcadas." </td>
                     
         
         </tr>"; 

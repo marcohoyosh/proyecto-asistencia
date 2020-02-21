@@ -1,4 +1,12 @@
-.row {
-  background-color: #eeeeee;
-  padding: 30px;
+#resumen td {
+  color:red !important;
+  font-weight:bold !important;
+  background-color:  white!important;
+
+}
+
+#resultSearch td{
+  color:white !important;
+  font-weight:bold !important;
+  background-color: skyblue !important;
 }
