@@ -15,7 +15,7 @@ if(!isset($_SESSION["id"])){
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
     <title>Asistencia</title>
@@ -48,8 +48,8 @@ if(!isset($_SESSION["id"])){
 <header>    
 
 <!--Navbar -->
-<nav class=" navbar navbar-expand-lg navbar-dark info-color" style="background-color: #737373  !important">
-  <a class="navbar-brand" href="#"><img src="imagenes/cmlogo.png" alt="Logo" width="180" class="logo"></a>
+<nav class=" navbar navbar-expand-lg navbar-dark info-color" style="background-color: #33b5e5  !important">
+  <a class="navbar-brand" href="#"><img src="imagenes/cmlogo.png" alt="Logo" width="150" class="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -61,7 +61,7 @@ if(!isset($_SESSION["id"])){
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i>  <?php echo $_SESSION["nombres"] ?> </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <a class="dropdown-item" href="cerrar_cesion.php"><i class="fa fa-close"></i> Cerrar Sesión</a>
+          <a class="dropdown-item" href="cerrar_cesion.php"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp Cerrar Sesión</a>
         </div>
       </li>
     </ul>
@@ -70,7 +70,13 @@ if(!isset($_SESSION["id"])){
 <!--/.Navbar -->
     
 	</header>
+<<<<<<< HEAD
   
+=======
+
+<br>
+<br>
+>>>>>>> 46cdc930149492ce0687f777672242ad6415e4d0
 <!-- Frame Modal Bottom -->
 <div class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -84,7 +90,7 @@ if(!isset($_SESSION["id"])){
         <div class="row d-flex justify-content-center align-items-center">
 
 
-		  <h3 class="modal-title w-100 text-center" style="font-size:24px; font-weight:bold;font-family:Poppins" id="myModalLabel"> ¡ Bienvenido ! </h3>
+		  <h3 class="modal-title w-100 text-center" style="font-size:24px; font-weight: none;font-family:Arial;" id="myModalLabel"> ¡ Bienvenido a ISC Control! </h3>
 
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
@@ -98,14 +104,20 @@ if(!isset($_SESSION["id"])){
 <!-- Material form contact -->
 <div class="card pt-0">
 
-    <h2 class="card-header info-color white-text text-center py-4" style="font-family:Poppins">
+    <!--<h2 class="card-header info-color white-text text-center py-4" style="font-family: Arial; font-size: 20px;">
     
 
 <strong>Control de Asistencia</strong>
 
 </h1>
+<<<<<<< HEAD
     </h2>
     
+=======
+	</h2>
+-->
+
+>>>>>>> 46cdc930149492ce0687f777672242ad6415e4d0
     <!--Card content-->
     <div class="container-fluid card-body px-lg-5 pt-0">
 
@@ -197,8 +209,9 @@ if(!isset($_SESSION["id"])){
     </div>
 
 </div>
-
-<div class=" container p-5  "  >
+<style>
+	</style>
+<div class=" container p-5  "   style="overflow-x:auto;">
 <table class="table "  style="max-height:1px">
   <thead class="white-text text-center blue " id = "cabecera">
     <tr class="  p-0 m-0 " >
@@ -222,9 +235,15 @@ if(!isset($_SESSION["id"])){
 </div>
 
 
+<<<<<<< HEAD
 <div class=" container table-responsive-sm">
     <table class="table table-bordered">
   <thead id="cabecera2">
+=======
+<div class="container table-responsive pl-4" style="overflow-x:auto;">
+<table class="w3-table-all"  >
+  <thead>
+>>>>>>> 46cdc930149492ce0687f777672242ad6415e4d0
     <tr class="w3-red">
 	<th scope="col">Nombre</th>
 	<th scope="col">Día</th>
