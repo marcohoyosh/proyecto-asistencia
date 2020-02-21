@@ -7,7 +7,7 @@ $json = array(
 
 
 try {
-    $pdo = new PDO("mysql:host=localhost;dbname=asistencia2;charset=utf8", "root", "");
+    $pdo = new PDO("mysql:host=localhost;dbname=asistencia3;charset=utf8", "root", "");
 } catch (PDOException $message) {
     echo $message->getMessage();
 }
