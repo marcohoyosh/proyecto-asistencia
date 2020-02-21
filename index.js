@@ -7,7 +7,7 @@ $(document).ready(function(){
     $('#lista_reproduccion').html(listas_rep)
   })
   .fail(function(){
-    alert('Hubo un errror al cargar las listas_rep')
+    alert('Hubo un error al cargar las listas_rep')
   })
 
   $('#lista_reproduccion').on('change', function(){
@@ -21,7 +21,7 @@ $(document).ready(function(){
       $('#videos').html(listas_rep)
     })
     .fail(function(){
-      alert('Hubo un errror al cargar los vídeos')
+      alert('Hubo un error al cargar los vídeos')
     })
   })
 
@@ -36,7 +36,7 @@ $(document).ready(function(){
       $('#nietos').html(listas_rep)
     })
     .fail(function(){
-      alert('Hubo un errror al cargar los vídeos')
+      alert('Hubo un error al cargar los vídeos')
     })
   })
 
@@ -66,8 +66,14 @@ $(document).ready(function(){
         //console.log(listas_rep);
         $('#resultSearch').html(x);
         $('#resumen').html(y);
+        //$('#resultSearch').hide();
+        //$('#resumen').hide();
         
+        //deferred.promise();
       })
+      //success: function (data) {
+        //alert("Registro obtenido!!!");
+      //}
       
     }
   })
@@ -115,14 +121,14 @@ $(document).ready(function(){
     }
   })
 
-  $('#frameModalBottom').modal('show')
+  $('#frameModalBottom').modal('show');
 
  // Data Picker Initialization
- $('.datepicker').pickadate({
-  today: '',
-  clear: 'Clear selection',
-  close: 'Cancel'
-  })
+ //$('.datepicker').pickadate({
+  //today: '',
+  //clear: 'Clear selection',
+  //close: 'Cancel'
+  //})
 
   $('#ReporteIdóneo').on('click', function(e) {
     

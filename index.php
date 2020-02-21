@@ -233,7 +233,7 @@ if(!isset($_SESSION["id"])){
 			
 				
 		
-			
+<script>src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 			
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 </script>
 <script type="text/javascript" src="index.js"></script>
