@@ -124,11 +124,18 @@ $(document).ready(function(){
   $('#frameModalBottom').modal('show');
 
  // Data Picker Initialization
+<<<<<<< HEAD
  //$('.datepicker').pickadate({
   //today: '',
   //clear: 'Clear selection',
   //close: 'Cancel'
   //})
+=======
+
+ 
+
+  
+>>>>>>> de4c6b92d0c8af4e77d54c2fb267e044326676a7
 
   $('#ReporteIdóneo').on('click', function(e) {
     

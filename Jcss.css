@@ -1,0 +1,42 @@
+body{
+
+
+    background: rgba(28,28,28,1);
+    background: -moz-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(28,28,28,1) 69%, rgba(77,77,77,1) 99%, rgba(77,77,77,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(28,28,28,1)), color-stop(69%, rgba(28,28,28,1)), color-stop(99%, rgba(77,77,77,1)), color-stop(100%, rgba(77,77,77,1)));
+    background: -webkit-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(28,28,28,1) 69%, rgba(77,77,77,1) 99%, rgba(77,77,77,1) 100%);
+    background: -o-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(28,28,28,1) 69%, rgba(77,77,77,1) 99%, rgba(77,77,77,1) 100%);
+    background: -ms-linear-gradient(top, rgba(28,28,28,1) 0%, rgba(28,28,28,1) 69%, rgba(77,77,77,1) 99%, rgba(77,77,77,1) 100%);
+    background: linear-gradient(to bottom, rgba(28,28,28,1) 0%, rgba(28,28,28,1) 69%, rgba(77,77,77,1) 99%, rgba(77,77,77,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1c1c1c', endColorstr='#4d4d4d', GradientType=0 );
+
+}
+
+.button-float{
+    cursor: pointer;
+    border-radius: 100px;
+    height: 65px; 
+    width: 65px;
+    left: 15px;
+    position: fixed; 
+    margin-left: 20px;
+    background-color: #4c6bb4;
+}
+.button-float-slide{
+    opacity: 0.5;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 100px;
+    height: 50px; 
+    width: 70px;
+    padding: 6px;
+    border: 1px solid #fff; 
+    left: 33px;
+    position: fixed; 
+}
+.button-float-slide:hover{
+    opacity: 0.9;                
+}
+#show-proveedor{
+    display: none;
+}

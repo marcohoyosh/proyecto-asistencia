@@ -20,6 +20,9 @@ if(!isset($_SESSION["id"])){
   
     <title>Asistencia</title>
 	<!-- Font Awesome -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">	
+<link rel="stylesheet" href="index.css">
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Google Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
@@ -33,11 +36,12 @@ if(!isset($_SESSION["id"])){
 
     
 <body>
+
 <header>    
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color" style="background-color: #737373 !important">
-  <a class="navbar-brand" href="#"><img src="imagenes/cmlogo.png" alt="Logo" height="80px" class="logo"></a>
+<nav class=" navbar navbar-expand-lg navbar-dark info-color" style="background-color: #737373  !important">
+  <a class="navbar-brand" href="#"><img src="imagenes/cmlogo.png" alt="Logo" width="180" class="logo"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -47,9 +51,9 @@ if(!isset($_SESSION["id"])){
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-user"></i> Perfil</a>
+          <i class="fas fa-user"></i>  <?php echo $_SESSION["nombres"] ?> </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <a class="dropdown-item" href="cerrar_cesion.php">Cerrar Sesión</a>
+          <a class="dropdown-item" href="cerrar_cesion.php"><i class="fa fa-close"></i> Cerrar Sesión</a>
         </div>
       </li>
     </ul>
@@ -73,7 +77,7 @@ if(!isset($_SESSION["id"])){
         <div class="row d-flex justify-content-center align-items-center">
 
 
-		  <h3 class="modal-title w-100 text-center" style="font-size:24px; font-weight:bold;font-family:Poppins" id="myModalLabel"> ¡ Bienvenido   <?php echo $_SESSION["nombres"] ?>  ! </h3>
+		  <h3 class="modal-title w-100 text-center" style="font-size:24px; font-weight:bold;font-family:Poppins" id="myModalLabel"> ¡ Bienvenido ! </h3>
 
           <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
         </div>
@@ -85,7 +89,7 @@ if(!isset($_SESSION["id"])){
 
 
 <!-- Material form contact -->
-<div class="card">
+<div class="card pt-0">
 
     <h2 class="card-header info-color white-text text-center py-4" style="font-family:Poppins">
     
@@ -96,10 +100,10 @@ if(!isset($_SESSION["id"])){
     </h2>
 
     <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
+    <div class="container-fluid card-body px-lg-5 pt-0">
 
         <!-- Form -->
-        <form class="text-center" style="color: #757575;" action="#!">
+        <form id="form1" action="reporte.php" method="POST" class="text-center" style="color: #757575;" action="#!">
 			<div class="row col-md-12">
 
             <!-- Local -->
@@ -112,7 +116,7 @@ if(!isset($_SESSION["id"])){
             </div>
 
  			<!-- Departamento -->
- 			<div class="col-md-3 md-form mt-3">
+ 			 <div class="container col-md-3 md-form mt-3">
 			<label >Departamento</label>
 			<br>
 			<br>
@@ -121,7 +125,7 @@ if(!isset($_SESSION["id"])){
             </div>
 
 			 <!-- Empleados -->
-			 <div class="col-md-3 md-form mt-3">
+			  <div class="container col-md-3 md-form mt-3">
 			<label >Empleados</label>
 			<br>
 			<br>
@@ -132,21 +136,23 @@ if(!isset($_SESSION["id"])){
             <!-- Fechas -->
             <div class="row col-md-3 md-form mt-3">
 			
-			<div class="col-md-6">
+			<div class="col-md-12 pb-2">
+			<label class="pl-2" >Rango de Fecha</label>
+			</div>
+			
+			<div class="container col-md-6  col-lg-6">
 
-			<div class="md-form">
-			<label for="fecha1" >De:</label>
-			<br>
- 			 <input placeholder="Seleccionar" type="date" id="fecha1" name="fecha1" step="1" class="pt-4 form-control datepicker">
+			<div class="md-form pt-3">
+			
+ 			 <input placeholder="Desde:" type="date" id="fecha1" name="fecha1" step="1" class="form-control datepicker">
 			</div>
 			</div>
 
-			<div class="col-md-6">
+			<div class="container col-md-6 col-lg-6">
 
-			<div class="md-form">
-			<label for="fecha2" >Hasta:</label>
-			<br>
-			<input placeholder="Seleccionar" type="date" id="fecha2" name="fecha2" step="1" class="pt-4 form-control datepicker">
+			<div class="md-form pt-3 ">
+		
+			<input placeholder="Hasta:" type="date" id="fecha2" name="fecha2" step="1" class="form-control datepicker">
 			</div>
 			</div>
 			</div>
@@ -157,13 +163,16 @@ if(!isset($_SESSION["id"])){
 
 			<div class="row botones">
 			
-			<div class="container m-5">
+			<div class="container col-md-12 " style="margin:15px 0px 20px 0px !important;font-family:Poppins">
+			
+										<button type="submit" id="enviar" type="submit"  value ="enviar" name ="enviar" class="btn btn-outline-secondary btn-rounded waves-effect col-md-2" style="border-radius:30px">Consultar</button>
+										<a target="_blank" class="btn btn-outline-danger btn-rounded waves-effect col-md-2" style="border-radius:30px" href="alarma.php">Centro de alarmas</a>
+										<button type="submit"  id="reportecito" type="submit"  value ="reportecito" name ="reportecito" class="btn btn-outline-info btn-rounded waves-effect col-md-2" style="border-radius:30px">Reporte</button>
+
+										 
 										
-										<button type="submit" id="enviar" type="submit" class="btn" value ="enviar" name ="enviar">Consultar</button> 
-										<button type="submit" id="reportecito" type="submit" class="btn"  value ="reportecito" name ="reportecito">Reporte</button>
-										 <a target="_blank" class = "btn" href="alarma.php">Centro de alarmas</a>
 										<?php if($_SESSION["rol"]==1) { ?>
-											<input type="submit" class="btn" value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo" />
+											<button type="submit"  id="reportecito" type="submit"   value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo"  class="btn btn-outline-success btn-rounded waves-effect col-md-2"  style="border-radius:30px">Reporte Idóneo</button>
 											
 										<?php } ?>
 									</div>
@@ -179,57 +188,60 @@ if(!isset($_SESSION["id"])){
     </div>
 
 </div>
-<!-- Material form contact -->
 
+<div class=" container p-5  "  >
+<table class="table "  style="max-height:1px">
+  <thead class="white-text text-center blue " id = "cabecera">
+    <tr class="  p-0 m-0 " >
+		<th class=" font-weight-bold h4" >TIEMPO LABORADO</th>
+		<th class=" font-weight-bold h4" colspan="3">TIEMPO NO LABORADO</th>	
+    </tr>
 
+	<tr class="p-0 m-0 ">
+						<td class=" font-weight-bold">Total</td>	
+						<td class=" font-weight-bold">Tardanzas</td>
+						<td class=" font-weight-bold">Salidas Tempranas</td>
+						<td class=" font-weight-bold">No marcadas</td>
+    </tr>
+  </thead>
 
-
-
-
-
-
-
-
-
-
-			<input type="hidden" name="id_u" value="<?php echo $_SESSION['id'] ?>"> 
-			<table>
-				<thead>
+  <tbody  colspan="3" id="resumen" class="text-center white-text" >
+	
 					
-					<tr>
-						<th>Tiempo Laborado</th>
-						<th colspan="3">Tiempo no Laborado</th>					
-					</tr>
-					<tr>
-					
-						<td>total</td>
-						<td>Tardanzas</td>
-						<td>Salidas Tempranas</td>
-						<td>No marcadas</td>
-					</tr>							
-					
-					
-				</thead>
-				<tbody id="resumen">
-	 
+  </tbody>
+</table>
+</div>
+
+
+<div class="container table-responsive pl-4">
+<table class="w3-table-all"  >
+  <thead>
+    <tr class="w3-red">
+	<th scope="col">Nombre</th>
+	<th   scope="col">Fecha</th>
+	<th   scope="col">Horario Entrada</th>
+	<th   scope="col">Inicio Refrigerio</th>
+	<th   scope="col">Salida Refrigerio</th>
+	<th   scope="col">Horario Salida</th>
+	<th   scope="col">Marcacion Ingreso</th>
+	<th   scope="col">Inicio Refrigerio</th>
+	<th   scope="col">Fin Refrigerio</th>
+	<th   scope="col">Marcacion Salida</th>
+	<th   scope="col">Tardanza</th>
+	<th   scope="col">Salida temprana</th>
+	<th   scope="col">Worktime</th>
+	<th   scope="col">Tiempo total</th>
+											
+    </tr>
+  </thead>
+  <tbody id="resultSearch" class="white-text" >
+											
 						
-				</tbody>					
-			</table>							
-				<table>
-				<thead>
-									<tr>
-									<th>Nombre</th><th>Fecha</th><th>Horario Entrada</th><th>Inicio Refrigerio</th><th>Salida Refrigerio</th><th>Horario Salida</th><th>Marcacion Ingreso</th><th>Marcacion de inicio Refrigerio</th><th>Marcacion de fin Refrigerio</th><th>Marcacion Salida</th><th>Tardanza</th><th>Salida temprana</th><th>Worktime</th><th>Tiempo total</th>
-									
-									</tr>
-								</thead>
-			 			<tbody id="resultSearch">
-	 
-						
-						</tbody>
-				</table>
+	 </tbody>
+</table>
+</div>
 
-				
-				
+
 			
 				
 		
