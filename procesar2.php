@@ -24,6 +24,7 @@ function getDatos(){
   $acumulador = null;
   $MarcacionBreak2 = null;
   $MarcacionBreakSalida2 = null;
+  $DiaNombre = null;
   date_default_timezone_set('America/Lima');
     $date1 = strtotime($fecha1);
     $date2 = strtotime($fecha2);
@@ -207,10 +208,10 @@ $var2 = "No marcó fin de Break";
         $date2 = new DateTime($MarcacionDeIngreso);
         $diff = $date1->diff($date2);
         // will output 2 days
-        $Tardanza = $diff->format('%H horas %i minutos').PHP_EOL; 
+        $Tardanza = $diff->format('%H:%I:00').PHP_EOL; 
         $work1= $MarcacionDeIngreso;
       }else{
-        $Tardanza = '00 horas 00 minutos';
+        $Tardanza = '00:00:00';
         $work1 = $HoraEntrada;
         
       }
@@ -226,11 +227,11 @@ $var2 = "No marcó fin de Break";
         $date2 = new DateTime($MarcacionDeSalida);
         $diff = $date1->diff($date2);
         // will output 2 days
-        $Temprano = $diff->format('%H horas %i minutos').PHP_EOL; 
+        $Temprano = $diff->format('%H:%I:00').PHP_EOL; 
          
         $work2 = $MarcacionDeSalida;
       } else {
-        $Temprano = '00 horas 00 minutos';
+        $Temprano = '00:00:00';
         $work2 = $HoraSalida;
       }
 
@@ -404,17 +405,30 @@ $var2 = "No marcó fin de Break";
                    // <td> ".$SumaMin." </td>
         
        // </tr>"; 
+        if($DiaDeSemana==0){
+          $DiaNombre = "Dommingo";
+        } else if($DiaDeSemana==1){
+          $DiaNombre = "Lunes";
+        }else if($DiaDeSemana==2){
+          $DiaNombre = "Martes";
+        }else if($DiaDeSemana==3){
+          $DiaNombre = "Miercoles";
+        }else if($DiaDeSemana==4){
+          $DiaNombre = "Jueves";
+        }else if($DiaDeSemana==5){
+          $DiaNombre = "Viernes";
+        }else if($DiaDeSemana==6){
+          $DiaNombre = "Sabado";
+        }
 
-        
         $listas .= " <tr>
         
         
         
         <td> ".$fila['nieto']." </td>
-        <td> ".$fila['mfecha']." </td>
+        <td> ".$DiaNombre." </td>
+        <td style='width=15px;'> ".$fila['mfecha']." </td>
         <td> ".$HoraEntrada." </td>
-        <td> ".$InicioFijoBreak." </td>
-        <td> ".$FinFijoBreak." </td>
         <td> ".$HoraSalida." </td>
         <td> ".$MarcacionDeIngreso." </td>
         <td> ".$MarcacionBreak." </td>

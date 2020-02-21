@@ -1,24 +1,48 @@
 #resumen td {
-  color:#8B0000 !important;
+  color:black  !important;
   font-weight:bold !important;
   background-color:  white!important;
 
 }
 #cabecera td {
-  color:#483D8B !important;
+  color:#000000  !important;
   font-weight:bold !important;
   background-color:  white!important;
 
 }
+
 #cabecera th {
-  color:#2F4F4F !important;
+  
   font-weight:bold !important;
   background-color:  white!important;
+}
+#cabecera2 th {
+  color:#FFE4C4 !important;
+  font-weight:bold !important;
+  background-color:  #FF6347!important;
+  width: 120px !important;
+  height: 5px;
+  margin-left: 10px !important;  
+  
+}
+#padre {
+  align-items: center !important;
+  margin: auto !important;
+  
 }
 
 #resultSearch td{
-  color:white !important;
+  color:#2F4F4F !important;
   font-weight:bold !important;
-  background-color: #2F4F4F !important;
+  background-color: #FFFAF0 !important;
+  border-bottom-color:#FF0000; 
+  
+  border-bottom-width:2px; 
+  border-top-color:#FF0000;
+   border-top-style:solid; 
+   border-top-width:1px;
+   width: 120px;
+   align-self: center;
+   margin-left: 5px;
   
 }

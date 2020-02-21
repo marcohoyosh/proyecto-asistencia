@@ -19,6 +19,14 @@ if(!isset($_SESSION["id"])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   
     <title>Asistencia</title>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="typeahead.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    
 	<!-- Font Awesome -->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">	
 <link rel="stylesheet" href="index.css">
@@ -33,7 +41,7 @@ if(!isset($_SESSION["id"])){
 </head>
 
 
-
+	  
     
 <body>
 
@@ -62,8 +70,7 @@ if(!isset($_SESSION["id"])){
 <!--/.Navbar -->
     
 	</header>
-
-
+  
 <!-- Frame Modal Bottom -->
 <div class="modal fade bottom" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
@@ -98,7 +105,7 @@ if(!isset($_SESSION["id"])){
 
 </h1>
     </h2>
-
+    
     <!--Card content-->
     <div class="container-fluid card-body px-lg-5 pt-0">
 
@@ -165,16 +172,18 @@ if(!isset($_SESSION["id"])){
 			
 			<div class="container col-md-12 " style="margin:15px 0px 20px 0px !important;font-family:Poppins">
 			
-										<button type="submit" id="enviar" type="submit"  value ="enviar" name ="enviar" class="btn btn-outline-secondary btn-rounded waves-effect col-md-2" style="border-radius:30px">Consultar</button>
-										<a target="_blank" class="btn btn-outline-danger btn-rounded waves-effect col-md-2" style="border-radius:30px" href="alarma.php">Centro de alarmas</a>
+										<button type="submit" id="enviar" type="submit"  value ="enviar" name ="enviar" class="btn btn-outline-info btn-rounded waves-effect col-md-2" style="border-radius:30px">Consultar</button>
+										
 										<button type="submit"  id="reportecito" type="submit"  value ="reportecito" name ="reportecito" class="btn btn-outline-info btn-rounded waves-effect col-md-2" style="border-radius:30px">Reporte</button>
 
 										 
 										
 										<?php if($_SESSION["rol"]==1) { ?>
-											<button type="submit"  id="reportecito" type="submit"   value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo"  class="btn btn-outline-success btn-rounded waves-effect col-md-2"  style="border-radius:30px">Reporte Idóneo</button>
+											<button type="submit"  id="reportecito" type="submit"   value="ReporteIdoneo" id="ReporteIdoneo" name="ReporteIdoneo"  class="btn btn-outline-info btn-rounded waves-effect col-md-2"  style="border-radius:30px">Reporte Idóneo</button>
 											
-										<?php } ?>
+                    <?php } ?>
+                    
+                    <a target="_blank" class="btn btn-outline-danger btn-rounded waves-effect col-md-2" style="border-radius:30px" href="alarma.php">Centro de alarmas</a>
 									</div>
 
 			</div>
@@ -193,8 +202,8 @@ if(!isset($_SESSION["id"])){
 <table class="table "  style="max-height:1px">
   <thead class="white-text text-center blue " id = "cabecera">
     <tr class="  p-0 m-0 " >
-		<th class=" font-weight-bold h4" >TIEMPO LABORADO</th>
-		<th class=" font-weight-bold h4" colspan="3">TIEMPO NO LABORADO</th>	
+		<th  class=" font-weight-bold h4" colspan="1" style="color:Darkgreen;">TIEMPO LABORADO</th>
+		<th class=" font-weight-bold h4" colspan="3" style="color:#8B0000 ;">TIEMPO NO LABORADO</th>	
     </tr>
 
 	<tr class="p-0 m-0 ">
@@ -213,24 +222,23 @@ if(!isset($_SESSION["id"])){
 </div>
 
 
-<div class="container table-responsive pl-4">
-<table class="w3-table-all"  >
-  <thead>
+<div class=" container table-responsive-sm">
+    <table class="table table-bordered">
+  <thead id="cabecera2">
     <tr class="w3-red">
 	<th scope="col">Nombre</th>
+	<th scope="col">Día</th>
 	<th   scope="col">Fecha</th>
 	<th   scope="col">Horario Entrada</th>
-	<th   scope="col">Inicio Refrigerio</th>
-	<th   scope="col">Salida Refrigerio</th>
 	<th   scope="col">Horario Salida</th>
 	<th   scope="col">Marcacion Ingreso</th>
 	<th   scope="col">Inicio Refrigerio</th>
 	<th   scope="col">Fin Refrigerio</th>
 	<th   scope="col">Marcacion Salida</th>
 	<th   scope="col">Tardanza</th>
-	<th   scope="col">Salida temprana</th>
-	<th   scope="col">Worktime</th>
-	<th   scope="col">Tiempo total</th>
+	<th   scope="col">Salida Temprana</th>
+	<th   scope="col">Tiempo Justo</th>
+	<th   scope="col">Tiempo Total</th>
 											
     </tr>
   </thead>
@@ -243,16 +251,14 @@ if(!isset($_SESSION["id"])){
 
 
 			
-				
+		
 		
 <script>src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 			
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
 </script>
 <script type="text/javascript" src="index.js"></script>
 
-						
-</body>
-
+					
 <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
